@@ -1,0 +1,24 @@
+h1{
+	color:#4B0082;
+	/*border-color: purple;
+	border-width: 5px;
+	border-style: solid;*/
+	border: 2px dashed purple;
+}
+li{
+	color:#FF1493;
+		}
+#special{ /* id could only be used once **/
+	background-color: yellow
+}
+
+.completed{ /* class could be used multiple times**/
+	text-decoration: line-through;
+}
+h4{
+	background: rgba(50,100,255,0.3);
+}
+body{
+	background: url(https://images.unsplash.com/photo-1514477917009-389c76a86b68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2589&q=80);
+	background-size: cover;
+}
