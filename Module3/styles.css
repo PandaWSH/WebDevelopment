@@ -1,0 +1,35 @@
+/*font family*/
+p {
+	font-family: Arial /*or without quote*/
+}
+
+h1 {
+	font-family: Bahianita
+}
+/*font size*/
+h1{
+	font-size: 20px;
+}
+/*font weight: how thick the line is*/
+p{
+	font-weight: bold; /*200~800*/
+}
+/*line height*/
+p{
+	line-height: 1.5
+}
+/*text align*/
+h1{
+	text-align: right
+}
+
+p{
+	text-align: left;
+}
+/*text decoration*/
+p{
+	text-decoration: underline;
+}
+h1{
+	text-decoration: line-through;
+}
