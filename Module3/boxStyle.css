@@ -1,0 +1,22 @@
+td{
+	width: 100px;
+	height: 100px;
+
+}
+
+.vertical{
+	border-left: 1px solid black
+}
+
+.buttom{
+	border-bottom: 1px solid black
+}
+
+table{
+	margin: auto;
+}
+
+h1{
+	color: blue;
+	text-align: center;
+}
