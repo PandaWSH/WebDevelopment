@@ -1,0 +1,40 @@
+/*border color: #bdc3c7
+date color: #3498db
+h1 color: #2c3e50
+
+font: source sans pro*/
+
+body{
+	border: 20px solid #bdc3c7;
+	padding: 20px;
+	max-width: 700px;
+	width: 80%
+	margin:0 auto; /*top-buttom, left-right*/
+	font-family: 'Source Sans Pro';
+}
+
+.date{
+	color: #3498db;
+	text-transform: uppercase;
+	letter-spacing: 0.2 rem;
+}
+
+.quote{
+	border-left: 5px solid #bdc3c7;
+	padding-left: 5px;
+}
+
+h1{
+	color:#2c3e50;
+	font-size: 2.0 rem;
+}
+
+hr{
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+}
+
+.post{
+	margin-bottom: 20px;
+}
