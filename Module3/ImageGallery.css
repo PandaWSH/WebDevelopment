@@ -1,0 +1,15 @@
+img{
+	width: 30%;
+	float:left;/*delet default space*/
+	margin: 1.66%;
+}
+p{
+	font-family: Amatic+SC;
+	margin-left:1.66%;
+	font-size: 40px
+	font-weight: 800;
+	text-transform: uppercase;
+	border-bottom: 2px solid gray;
+	width: 25%; /*underline width*/
+	padding-bottom: 20px; /*space btw the underline and text*/
+}
