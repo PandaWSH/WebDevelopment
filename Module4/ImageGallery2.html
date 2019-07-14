@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Gallery2</title>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+</head>
+<body>
+<!-- navbar from last practice -->
+ 	<nav class="navbar navbar-inverse narber-fixed-top">	
+	<div class = "container">	
+		<div class = "navbar-hearder"> <!-- header -->
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false"> <!-- Hamburger session -->
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span> 
+	      </button>
+			<a href="#" class= "navbar-brand">IMgallery</a>			
+		</div>
+		<div class="collapse navbar-collapse" id="bs-nav-demo"> <!-- collaps when shrink window -->
+		<ul class = "nav navbar-nav"> <!-- content -->
+			<li><a href="#">About</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+
+		<ul class = "nav navbar-nav navbar-right"> <!-- rightside items -->
+			<li><a href="#">Sign up</a></li>
+			<li><a href="#">Login</a></li>
+		</ul>
+		</div>
+	</div>
+	</nav>
+
+<!-- Picture section -->
+<div class = "container">
+	<!-- jumbotron -->
+	<div class = "jumbotron">
+		 <h1><span class="glyphicon glyphicon-camera" aria-hidden="true"></span> The Image Gallery 2.0</h1>
+		 <p>Better than last version</p>
+		</div>
+
+	<!-- images -->
+	<div class = "row">
+		<div class = "col-md-4 col-sm-4 col-xs-4">
+			<div class = "thumbnail"> <!-- thumbnail acts like a border, and refine the size to col-sm-3 rather than real image size -->
+			<img src="http://i.imgur.com/qK42fUu.jpg"> </div>
+		</div>
+		<div class = "col-md-4 col-sm-4 col-xs-4">
+			<div class = "thumbnail">
+			<img src="http://i.imgur.com/qK42fUu.jpg"></div>
+		</div>
+		<div class = "col-md-4 col-sm-4 col-xs-4">
+			<div class = "thumbnail">
+			<img src="http://i.imgur.com/qK42fUu.jpg"></div>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="bootstrap.min.js"></script>
+
+
+
+
+</body>
+</html>
