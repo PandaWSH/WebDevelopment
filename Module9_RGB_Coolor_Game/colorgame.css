@@ -1,5 +1,8 @@
 body {
 	background-color: #232323;
+	margin:0;
+	font-family: "Montserra", "Avenir";
+
 }
 
 .box{ /*six square color*/
@@ -8,6 +11,10 @@ body {
 	padding-bottom: 30%; /*otherwise, the box won't be shown*/
 	float:left;
 	margin: 1.66%;
+	border-radius: 30%;
+	transition: background 1.0s; /*fade out animation when selected*/
+	-webkit-transition:background 1.0s;
+	-moz-transition:background 1.0s;
 }
 
 #container{
@@ -18,8 +25,19 @@ body {
 
 h1{
 	color: white;
+	line-height: 1.1;
+	padding: 20px 0px;
+	text-align: center;
+	background-color: steelblue;
+	margin:0;
+	font-weight: normal;
+	text-transform: uppercase;
 }
 
+#message {
+	display: inline-block;
+	width: 20%;
+}
 
 #strike {
 	background-color: white;
@@ -27,6 +45,39 @@ h1{
 	text-align: center;
 }
 
-.selected{
+.selected{ /*selected text**/
 	background-color: blue;
+	color: white;
 }
+
+#colordisplay{
+	font-size: 200%;
+}
+
+button{
+	border: none;
+	background: none;
+	text-transform: uppercase;
+	height: 100%;
+	font-weight: 700;
+	color: steelblue;
+	letter-spacing: 1px;
+	font-size: inherit;
+	transition: all, 0.5s; /*animate the fade out animation*/
+	-webkit-transition:all 1.0s;
+	-moz-transition:all 1.0s;
+}
+
+button:hover{
+	color: white;
+	background-color: steelblue;
+}
+
+
+
+
+
+
+
+
+

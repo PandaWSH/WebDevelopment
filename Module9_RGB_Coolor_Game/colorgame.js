@@ -1,4 +1,5 @@
-var colors = generateColor(6);
+var numberOfBox = 6; //tracker of number of boxes
+var colors = generateColor(numberOfBox);
 
 var boxes = document.querySelectorAll(".box");
 var pickedcolor = pickColor();
@@ -9,50 +10,57 @@ var reset = document.querySelector("#reset");
 var easy  = document.querySelector("#easy");
 var hard = document.querySelector("#hard");
 
+
 easy.addEventListener("click", function(){
+	numberOfBox = 3;
 	hard.classList.remove("selected");
 	easy.classList.add("selected");
-	colors = generateColor(3);
+	colors = generateColor(numberOfBox);
 	pickedcolor = pickColor();
 	colordisplay.textContent = pickedcolor;
+	messagedisplay.textContent = " ";
 	for(var i = 0; i < boxes.length; i++){
 		if (colors[i]){
 		boxes[i].style.backgroundColor = colors[i];}
 		else{
 		boxes[i].style.display = "none"; //hide no need ones
 		}
-	h1.style.backgroundColor = "#232323";
+	h1.style.backgroundColor = "steelblue";
 	}
 });
 	
 
 hard.addEventListener("click",function(){
+	numberOfBox = 6
+	messagedisplay.textContent = " ";
 	easy.classList.remove("selected");
 	hard.classList.add("selected");
-	colors = generateColor(6);
+	colors = generateColor(numberOfBox);
 	pickedcolor = pickColor();
 	colordisplay.textContent = pickedcolor;
 	for(var i = 0; i < boxes.length; i++){		
 		boxes[i].style.backgroundColor = colors[i];		
 		boxes[i].style.display = "block"; //hide no need ones
 		}
-	h1.style.backgroundColor = "#232323";
+	h1.style.backgroundColor = "steelblue";
 	}
 
 );
 
 reset.addEventListener("click", function(){
+	messagedisplay.textContent = " ";
 	// generate new colors
 	colors = generateColor(6);
 	// pick the target color
 	pickedcolor = pickColor();
+	reset.textContent = "New color"
 	// change color displayed to match picked one
 	colordisplay.textContent = pickedcolor;
 	// update boxes color
 	for(var i = 0; i < boxes.length; i++){
 		boxes[i].style.backgroundColor = colors[i];
 	}
-	h1.style.backgroundColor = "#232323";
+	h1.style.backgroundColor = "steelblue";
 })
 
 colordisplay.textContent = pickedcolor;
@@ -67,6 +75,7 @@ for (var i = 0; i < boxes.length; i++){
 		var clickedcolor = this.style.backgroundColor;
 		if (clickedcolor === pickedcolor){
 		messagedisplay.textContent = "you win!";
+		reset.textContent = "Another turn?";
 		changecolor(pickedcolor);
 		h1.style.backgroundColor = clickedcolor;
 		}
