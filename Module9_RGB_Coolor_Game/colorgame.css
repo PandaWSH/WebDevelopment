@@ -20,6 +20,13 @@ h1{
 	color: white;
 }
 
-span{
-	color: white;
+
+#strike {
+	background-color: white;
+	height: 30px;
+	text-align: center;
+}
+
+.selected{
+	background-color: blue;
 }
