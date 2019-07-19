@@ -1,0 +1,25 @@
+body {
+	background-color: #232323;
+}
+
+.box{ /*six square color*/
+	width: 30%;
+	background-color: purple;
+	padding-bottom: 30%; /*otherwise, the box won't be shown*/
+	float:left;
+	margin: 1.66%;
+}
+
+#container{
+	max-width: 600px;
+	margin: 0 auto; /*0 as bottom-top, auto as left-right*/
+
+}
+
+h1{
+	color: white;
+}
+
+span{
+	color: white;
+}
