@@ -109,6 +109,7 @@ function generateColor(num){
 	return arr;
 }
 
+
 function randomColor(){
 	//pick a red from 0-255, grenn from 0-255 and a blue
 	var r = Math.floor(Math.random() * 256);
