@@ -1,0 +1,18 @@
+<% include partials/header %>
+<h1>You felll in love with: <%= thingVar %></h1>
+<!-- things in the <%= %> would be treated as java file -->
+<p>
+	P.S. this is the love.ejs file
+</p>
+
+<%if(thingVar.toLowerCase() === "rusty"){ %>
+<p>good choice!</p>
+<%} 
+	else { %>
+	<p>bad choice!</p> <%} 
+	%>
+
+<!--  <%= %>the value that is return would be in the html
+ <% %>just run the code without showing in the html content -->
+
+<% include partials/footer %>
