@@ -11,6 +11,15 @@ app.get("/fallinlovewith/:thing",function(req, res){
 	res.render("love.ejs", {thingVar: thing});//in the {}, it's defining thingVar as thing
 });
 
+app.get("/posts", function(req,res){
+	var posts= [
+		{title: "Post1", author: "A"},
+		{title: "Post2", author: "B"},
+		{title: "Post3", author: "C"}
+	];
+	res.render("posts.ejs", {postVar: posts});
+});
+
 // *********** server setup **************
 app.listen(9000, () => {
 	console.log("server test ok!");
