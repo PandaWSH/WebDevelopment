@@ -22,7 +22,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/blogs", (req, res) => {
-	res.render("index");
+	Blog.find({}, (err, blogs) => {
+		if(err){
+			console.log("ERROR!");
+		}else{
+			res.render("index", {blogs: blogs});
+		}
+	});
 });
 
 app.listen(9000, () => {

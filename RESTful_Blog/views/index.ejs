@@ -1,3 +1,12 @@
 <h1>
 	Index test!
 </h1>
+
+<% blogs.forEach(function(blog){ %> <!-- loop through each blog post -->
+	<div>
+		<h2><%=blog.title%></h2>
+		<img src = " <%= blog.image %>" >
+		<span> <%= blog.created %></span>
+		<p><%= blog.body %></p>
+	</div>	
+<% }) %>

@@ -1,40 +1,12 @@
-<% include partials/header %>
-<!-- navbar section is in the header.ejs file-->
+<h1>
+	Index test!
+</h1>
 
-<div class="container"> <!-- the most external one -->
-	<header class="jumbotron">
-		<div class = "container">		
-			<h1>This is the food album page!</h1>
-				<p>Feel free to check the food I cooked.</p>		
-				<p>
-					<a class = "btn btn-primary btn-lg" href = "/foods/new">Add new food!</a>
-				</p>
-		</div>		
-	</header>
-
-	<div class = "row text-center" style = "display:flex; flex-wrap:wrap;"> <!-- grid auto adjust -->
-		<!-- loading pictures from the food array -->
-		<% foods.forEach(function(food){ %>
-			<div class = "col-md-3 col-sm-6">
-				<div class = "thumbnail">
-					<img src= "<%= food.image %>" > 
-					<div class = "caption"> 
-						<h4><%= food.name %></h4> <!-- text within image container -->
-					</div>
-					<p>
-						<a href = "/foods/<%= food._id %>" class = "btn btn-primary">More Info</a>
-					</p>
-				</div>					
-			</div>
-		<% }); %>	
-	</div>
-	
-	
-	
-	
-	
-	
-
-	
-</div> <!-- the most external one -->
-<% include partials/footer %>
+<% blogs.forEach(function(blog){ %> <!-- loop through each blog post -->
+	<div>
+		<h2><%=blog.title%></h2>
+		<img src = " <%= blog.image %>" >
+		<span> <%= blog.created %></span>
+		<p><%= blog.body %></p>
+	</div>	
+<% }) %>
