@@ -12,7 +12,7 @@
 		</div>		
 	</header>
 
-	<div class = "row" style = "display:flex; flex-wrap:wrap;"> <!-- grid auto adjust -->
+	<div class = "row text-center" style = "display:flex; flex-wrap:wrap;"> <!-- grid auto adjust -->
 		<!-- loading pictures from the food array -->
 		<% foods.forEach(function(food){ %>
 			<div class = "col-md-3 col-sm-6">
@@ -20,7 +20,10 @@
 					<img src= "<%= food.image %>" > 
 					<div class = "caption"> 
 						<h4><%= food.name %></h4> <!-- text within image container -->
-					</div>						
+					</div>
+					<p>
+						<a href = "/foods/<%= food._id %>" class = "btn btn-primary">More Info</a>
+					</p>
 				</div>					
 			</div>
 		<% }); %>	
