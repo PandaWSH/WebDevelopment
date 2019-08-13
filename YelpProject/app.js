@@ -1,20 +1,16 @@
 var express = require("express"),
     app = express(),
     mongoose = require('mongoose'),
-    bodyParser = require("body-parser")
+    bodyParser = require("body-parser"),
+	Food = require("./models/food"),
+	seedDB = require("./seeds");
 
+seedDB();
 mongoose.connect("mongodb://localhost/yelp_food",{useNewUrlParser:true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs");
 
 // SCHEMA SETUP
-var foodsSchema = new mongoose.Schema({
-	name: String,
-	image: String,
-	description: String 
-});
-
-var Food = mongoose.model("Food", foodsSchema); //created a model
 
 // Food.create(
 // 	{
@@ -71,10 +67,11 @@ app.post("/foods", (req, res) => {
 });	 
 	 //SHOW - shows more infor about one food post
 app.get("/foods/:id", (req, res) => {
-	Food.findById(req.params.id, (err, foundFood) => {
+	Food.findById(req.params.id).populate("comments").exec((err, foundFood) => {
 		if(err){
 			console.log(err);
 		} else{
+			console.log(foundFood);
 			res.render("show", {food:foundFood}); 
 		}			  
 	});
