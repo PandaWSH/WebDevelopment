@@ -3,7 +3,8 @@ var express = require("express"),
     mongoose = require('mongoose'),
     bodyParser = require("body-parser"),
 	Food = require("./models/food"),
-	seedDB = require("./seeds");
+	Comment = require("./models/comment"),
+	seedDB = require("./seeds"); 
 
 seedDB();
 mongoose.connect("mongodb://localhost/yelp_food",{useNewUrlParser:true});
@@ -39,7 +40,7 @@ app.get("/foods", (req, res) => {
 		if(err){
 			console.log(err);
 		} else{
-			res.render("index",{foods: allFoods}); //send to the foods.ejs
+			res.render("foods/index",{foods: allFoods}); //send to the foods.ejs
 		}
 	});
 });
@@ -63,7 +64,7 @@ app.post("/foods", (req, res) => {
 
 	//NEW - show form to create new
  app.get("/foods/new", (req, res)=> {
-	res.render("new.ejs");	
+	res.render("foods/new.ejs");	
 });	 
 	 //SHOW - shows more infor about one food post
 app.get("/foods/:id", (req, res) => {
@@ -72,13 +73,46 @@ app.get("/foods/:id", (req, res) => {
 			console.log(err);
 		} else{
 			console.log(foundFood);
-			res.render("show", {food:foundFood}); 
+			res.render("foods/show", {food:foundFood}); 
 		}			  
 	});
 });
 
-// *******************************Group 1********************************
+// =============== 
+// COMMENT ROUTES
+// ===============
 
+app.get("/foods/:id/comments/new", (req, res)=> {
+	Food.findById(req.params.id, (err, food)=> {
+		if(err) {
+		   console.log(err);
+		   } else{
+			   res.render("comments/new", {food:food});
+		   }
+		});
+	});
+
+app.post("/foods/:id/comments", (req, res) => {
+	//lookup food using ID
+	Food.findById(req.params.id, (err, foodfound) => {
+		if(err) {
+			console.log(err);
+		} else {
+			Comment.create(req.body.comment, (err, comment)=> {
+				if(err){
+				console.log(err);
+				} else {
+					foodfound.comments.push(comment);
+					foodfound.save();
+					res.redirect('/foods/' + foodfound._id);
+				}	   
+			});
+		}
+	});
+	//create new comment
+	//connect new comment to food
+	//redirect to show page
+});
 
 //*********** server setup **************
 app.listen(9000, () => {
