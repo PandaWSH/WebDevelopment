@@ -49,42 +49,7 @@ router.get("/foods/:id", (req, res) => {
 	});
 });
 
-// EDIT FOOD ROUTE 
-router.get("/foods/:id/edit", (req, res)=> {
-	Food.findById(req.params.id, (err, foundFood)=> {
-		if(err) {
-			res.redirect("/foods");
-		} else {
-			res.render("foods/edit", {food:foundFood});
-		}
-	});
-	
-});
-//UPDATE FOOD ROUTE
-router.put("/foods/:id", (req, res) => {
-	//find and update the correct food
-	Food.findByIdAndUpdate(req.params.id, req.body.food, (err, updatedFood)=> {
-		if(err) {
-			res.redirect("/foods");
-		} else {
-			res.redirect("/foods/" + req.params.id);  
-		}
-	});
-	//redirect somewhere
-});
-
-// DESTROY ROUTE
-router.delete("/foods/:id", (req, res)=> {
-	Food.findByIdAndRemove(req.params.id, (err)=> {
-		if(err){
-			res.redirect("/foods");
-		} else {
-			res.redirect("/foods");
-		}
-	});
-});
-
-// middleware -- only allow the user to comment when logged in
+// only allow the user to comment when logged in
 function isLoggedIn(req, res, next) {
 	if(req.isAuthenticated()) {
 		return next();
