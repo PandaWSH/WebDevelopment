@@ -1,16 +1,42 @@
 <% include ../partials/header %>
+<div class = "container">	
+	<div class = "row">
+		<!-- side bar -->
+		<div class = "col-md-3">
+			<p class = "lead">Food Album</p>
+			<div class = "list-group">
+				<li class = "list-group-item active">A</li>
+				<li class = "list-group-item">B</li>
+				<li class = "list-group-item">C</li>
+			</div>
+		</div>
+		<!-- right side content -->
+		<div class = "col-md-9">
+			<div class = "thumbnail">
+				<img class = "img-responsive" src = "<%= food.image %>"> <!-- image -->
+				<div class = "caption-full">
+					<h4 class = "pull-right">$10/serve </h4> <!-- price -->
+					<h4><a><%= food.name%></a></h4 > <!-- name and link to relative page -->
+					<p><%=food.description %></p> <!-- description -->
+				</div>	
+			</div>
+			<div class = "well">
+				<div class = "text-right"><!-- button -->
+					<a class = "btn btn-success" href="/foods/<%= food._id %>/comments/new">Comment</a>
+				</div>
+				<% food.comments.forEach(function(comment){ %>
+					<div class = "row">	
+						<div class = "col-md-12">
+							<strong><%= comment.author %></strong> <!-- bold the author -->
+							<span class = "pull-right">10 days ago</span> <!-- temporary hardcode  -->
+						<p><%= comment.text %></p>
+						</div>
+					</div>
+				<% }) %>
+			</div>
+		</div>
+	</div>	
+</div>
 
-<h1><%= food.name%></h1>
-
-<img src = "<%= food.image %>">
-
-<p><%=food.description %></p>
-
-<p>
-	<a class = "btn btn-success" href="/foods/<%= food._id %>/comments/new">Comment</a>	 
-</p>
-<% food.comments.forEach(function(comment){ %>
-	<p><%= comment.author %> - <%= comment.text %></p>
-<% }) %>
 
 <% include ../partials/footer %>

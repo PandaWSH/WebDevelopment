@@ -1,15 +1,37 @@
 var express = require("express"),
     app = express(),
+	passport = require("passport"),
+	LocalStrategy = require("passport-local"),
     mongoose = require('mongoose'),
     bodyParser = require("body-parser"),
 	Food = require("./models/food"),
+	User = require("./models/user"),
 	Comment = require("./models/comment"),
 	seedDB = require("./seeds"); 
 
-seedDB();
 mongoose.connect("mongodb://localhost/yelp_food",{useNewUrlParser:true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs");
+app.use(express.static(__dirname + "/public")) //dirname makes sure the directory is current
+seedDB();
+
+// PASSPORT CONFIGURATION
+app.use(require("express-session")({
+	secret: "Eat too many noodles would gain me weight!",
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate())); //authenticate came from LocalMongoose package
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	next(); //move to next middle where
+});
+
 
 // SCHEMA SETUP
 
@@ -33,14 +55,15 @@ app.get("/", (req, res) => {
 });
 
 // *******************************Group 1*********************************
-	//INDEX route - show all foods
+
+//INDEX route - show all foods
 app.get("/foods", (req, res) => {
 	// get all foods from db datasbase
 	Food.find({}, (err, allFoods) => { 
 		if(err){
 			console.log(err);
 		} else{
-			res.render("foods/index",{foods: allFoods}); //send to the foods.ejs
+			res.render("foods/index",{foods: allFoods, currentUser: req.user}); //send to the foods.ejs
 		}
 	});
 });
@@ -82,7 +105,7 @@ app.get("/foods/:id", (req, res) => {
 // COMMENT ROUTES
 // ===============
 
-app.get("/foods/:id/comments/new", (req, res)=> {
+app.get("/foods/:id/comments/new", isLoggedIn, (req, res)=> { //isLoggedIn makes sure this will work only when user logged in 
 	Food.findById(req.params.id, (err, food)=> {
 		if(err) {
 		   console.log(err);
@@ -92,7 +115,7 @@ app.get("/foods/:id/comments/new", (req, res)=> {
 		});
 	});
 
-app.post("/foods/:id/comments", (req, res) => {
+app.post("/foods/:id/comments", isLoggedIn, (req, res) => { //isLoggedIn makes sure comments will be seen only when users logged in
 	//lookup food using ID
 	Food.findById(req.params.id, (err, foodfound) => {
 		if(err) {
@@ -114,17 +137,57 @@ app.post("/foods/:id/comments", (req, res) => {
 	//redirect to show page
 });
 
+// ==========
+// AUTH ROUTE
+// ==========
+app.get("/register", (req, res)=> {
+	res.render("register");
+});
+
+app.post("/register", (req, res) => {
+	var newUser = new User({username: req.body.username});//username
+	User.register(newUser, req.body.password, (err, user) => {
+		if(err) {
+			console.log(err);
+			return res.render("register"); //to get out of the err context
+		}
+		passport.authenticate("local")(req, res, function(){
+			res.redirect("/foods");
+		});	
+	});//"register" provided by passport local mongoose
+	
+});
+
+// show register form
+app.get("/login", (req, res) => {
+	res.render("login");
+});
+
+// login route
+app.post("/login",passport.authenticate("local", {
+	successRedirect: "/foods",
+	failureRedirect:"/login"
+	}), (req, res) => {
+	res.send("LOGIN LOGIC");
+});
+
+//log out route
+app.get("/logout", (req, res) => {
+	req.logout();
+	res.redirect('/foods');
+});
+
+// only allow the user to comment when logged in
+function isLoggedIn(req, res, next) {
+	if(req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect("/login");
+}
+
+
 //*********** server setup **************
 app.listen(9000, () => {
 	console.log("server test ok!");
 });
-
-// mongoose.connect('mongodb+srv://pandawsh:Wshjy31928!@cluster0-v6n3j.mongodb.net/test',{
-// 				 useNewUrlParser: true,
-// 				 useCreateIndex: true
-// 				 }).then(() => {
-// 	console.log('Connected to DB!');
-// }).catch(err => {
-// 	console.log('ERROR:', err.message);
-// });
 // ***************************************
