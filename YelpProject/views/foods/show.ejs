@@ -11,6 +11,7 @@
 			</div>
 		</div>
 		<!-- right side content -->
+		<!-- =================== Content =================== -->
 		<div class = "col-md-9">
 			<div class = "thumbnail">
 				<img class = "img-responsive" src = "<%= food.image %>"> <!-- image -->
@@ -18,9 +19,19 @@
 					<h4 class = "pull-right">$15/serve </h4> <!-- price -->
 					<h4><a><%= food.name%></a></h4 > <!-- name and link to relative page -->
 					<p><%=food.description %></p> <!-- description -->
-					<p> <em>Submitted By <%= food.author.username %></em></p>
+					<p> <em>Submitted By <%= food.author.username %></em></p>  <!-- submit -->
+					
+					<% if (currentUser && food.author.id.equals(currentUser._id))  { %> <!-- there -->
+						<a class = "btn btn-success" href = "/foods/<%= food._id %>/edit"> Edit </a>  <!-- edit -->
+						<form id = "delete-form" action="/foods/<%= food._id %>?_method=DELETE" method = "POST" >
+							<button class = "btn btn-danger">
+								Delete
+							</button>
+						</form>
+					<% } %>
 				</div>	
 			</div>
+			<!-- =================== Comment =================== -->
 			<div class = "well">
 				<div class = "text-right"><!-- button -->
 					<a class = "btn btn-success" href="/foods/<%= food._id %>/comments/new">Comment</a>
@@ -31,6 +42,14 @@
 							<strong><%= comment.author.username %></strong> <!-- bold the author -->
 							<span class = "pull-right">10 days ago</span> <!-- temporary hardcode  -->
 						<p><%= comment.text %></p>
+							
+						<% if (currentUser && comment.author.id.equals(currentUser._id))  { %>
+						<a class = "btn btn-xs btn-warning"
+						   href = "/foods/<%=food._id%>/comments/<%=comment._id%>/edit">Edit</a>
+						<form id = "delete-form" action= "/foods/<%=food._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+							<input type = "submit" class = "btn btn-xs btn-danger" value="Delete">
+						</form>
+						<% } %>
 						</div>
 					</div>
 				<% }) %>

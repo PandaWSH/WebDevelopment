@@ -2,6 +2,7 @@ var express = require("express"),
     app = express(),
 	passport = require("passport"),
 	LocalStrategy = require("passport-local"),
+	methodOverride = require("method-override"), 
     mongoose = require('mongoose'),
     bodyParser = require("body-parser"),
 	Food = require("./models/food"),
@@ -17,6 +18,7 @@ mongoose.connect("mongodb://localhost/yelp_food",{useNewUrlParser:true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs");
 app.use(express.static(__dirname + "/public")) //dirname makes sure the directory is current
+app.use(methodOverride("_method"));
 seedDB();
 
 // PASSPORT CONFIGURATION
