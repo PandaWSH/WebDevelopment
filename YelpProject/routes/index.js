@@ -20,10 +20,11 @@ router.post("/register", (req, res) => {
 	var newUser = new User({username: req.body.username});//username
 	User.register(newUser, req.body.password, (err, user) => {
 		if(err) {
-			console.log(err);
+			req.flash("error",err.message); //err.message will show the message
 			return res.render("register"); //to get out of the err context
 		}
 		passport.authenticate("local")(req, res, function(){
+			req.flash("success", "Welcome to Food Album" + user.username);
 			res.redirect("/foods");
 		});	
 	});//"register" provided by passport local mongoose
@@ -45,6 +46,7 @@ router.post("/login",passport.authenticate("local", {
 
 router.get("/logout", (req, res) => {
 	req.logout();
+	req.flash("success","YOU HAVE LOGGED OUT");
 	res.redirect('/foods');
 });
 
@@ -53,6 +55,7 @@ function isLoggedIn(req, res, next) {
 	if(req.isAuthenticated()) {
 		return next();
 	}
+	req.flash("error","PLEASE LOG IN TO DO THAT");
 	res.redirect("/login");
 }
 
