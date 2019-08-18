@@ -16,7 +16,7 @@
 			<div class = "thumbnail">
 				<img class = "img-responsive" src = "<%= food.image %>"> <!-- image -->
 				<div class = "caption-full">
-					<h4 class = "pull-right">$15/serve </h4> <!-- price -->
+					<h4 class = "pull-right">$<%food.price%> </h4> <!-- price -->
 					<h4><a><%= food.name%></a></h4 > <!-- name and link to relative page -->
 					<p><%=food.description %></p> <!-- description -->
 					<p> <em>Submitted By <%= food.author.username %></em></p>  <!-- submit -->

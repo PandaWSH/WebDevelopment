@@ -17,6 +17,7 @@ router.get("/foods", (req, res) => {
 router.post("/foods", middleware.isLoggedIn, (req, res) => {
 	// get data from form and add to foods array	
 	var name = req.body.name;
+	var price = req.body.price; 
 	var image = req.body.image;
 	var description = req.body.description;
 	var author = {
