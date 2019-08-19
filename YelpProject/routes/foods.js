@@ -1,16 +1,28 @@
- var express = require("express");
+var express = require("express");
 var router = express.Router(); //then change all "app" into "router"
 var Food = require("../models/food");
 var middleware = require("../middleware"); //since the folder only has one file, it's ok this way
+
+// INDEX - get all foods from db datasbase
 router.get("/foods", (req, res) => {
-	// get all foods from db datasbase
-	Food.find({}, (err, allFoods) => { 
-		if(err){
-			console.log(err);
-		} else{
-			res.render("foods/index",{foods: allFoods, currentUser: req.user}); //send to the foods.ejs
-		}
-	});
+	if(req.query.search){
+		const regex = new RegExp(escapeRegex(req.query,search),'gi');
+		Food.find({name: regex}, (err, allFoods) => { //only search regex in names
+			if(err){
+				console.log(err);
+			} else{
+				res.render("foods/index",{foods: allFoods, currentUser: req.user}); //send to the foods.ejs
+			}
+		}); 
+	} else {	
+		Food.find({}, (err, allFoods) => { 
+			if(err){
+				console.log(err);
+			} else{
+				res.render("foods/index",{foods: allFoods, currentUser: req.user}); //send to the foods.ejs
+			}
+		});
+	}	
 });
 
 	//CREATE - add new foods to DB
@@ -89,6 +101,8 @@ router.delete("/foods/:id", middleware.checkFoodOwnership, (req, res)=> {
 
 // middleware all goes to a separate file
 
-
+function escapeRegex(text) {
+	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&");
+}; 
 
 module.exports = router;

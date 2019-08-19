@@ -8,21 +8,30 @@ var express = require("express"),
 	Food = require("./models/food"),
 	User = require("./models/user"),
 	Comment = require("./models/comment"),
-	flash = require("connect-flash"),
-	seedDB = require("./seeds"); 
+	flash = require("connect-flash");
+	//seedDB = require("./seeds"); 
 
 
 var commentRoutes = require("./routes/comments"),
 	foodRoutes = require("./routes/foods"),
 	indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/yelp_food",{useNewUrlParser:true});
+mongoose.connect('mongodb+srv://pandawsh:Wshjy31928!@cluster0-v6n3j.mongodb.net/test',{
+				 useNewUrlParser: true,
+				 useCreateIndex: true
+				 }).then(() => {
+	console.log('Connected to DB!');
+}).catch(err => {
+	console.log('ERROR:', err.message);
+});
+
+//mongoose.connect("mongodb://localhost/yelp_food_final",{useNewUrlParser:true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs");
 app.use(express.static(__dirname + "/public")) //dirname makes sure the directory is current
 app.use(methodOverride("_method"));
 app.use(flash());
-seedDB();
+//seedDB();
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
@@ -63,7 +72,9 @@ app.use(commentRoutes);
 
 
 //*********** server setup **************
-app.listen(9000, () => {
-	console.log("server test ok!");
-});
+// app.listen(9000, () => {
+// 	console.log("server test ok!");
+// });
+
+app.listen(process.env.PORT, process.env.IP);
 // ***************************************
