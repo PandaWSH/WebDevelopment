@@ -1,11 +1,28 @@
+/* background */
+body {
+	background:url("https://i.imgur.com/Bg2NSGx.jpg") center center;
+	background-size: auto;
+}
+
 .thumbnail img {
 	width : 100%;
+	z-index: 1;
 }
 
 .thumbnail .caption-full {
 	padding: 9px;
+	z-index: 1;
 }
 
 #delete-form {
 	display: inline;
+	z-index: 1;
+}
+
+#top {
+	z-index: 1;
+}
+
+.jumbotron {
+	background-color:rgba(255,255,255,0.4) !important; 
 }

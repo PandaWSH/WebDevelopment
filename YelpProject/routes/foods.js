@@ -2,6 +2,29 @@ var express = require("express");
 var router = express.Router(); //then change all "app" into "router"
 var Food = require("../models/food");
 var middleware = require("../middleware"); //since the folder only has one file, it's ok this way
+// ---------------------- image upload ------------------------
+var multer = require('multer');
+var storage = multer.diskStorage({
+  filename: function(req, file, callback) {
+    callback(null, Date.now() + file.originalname);
+  }
+});
+var imageFilter = function (req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+};
+var upload = multer({ storage: storage, fileFilter: imageFilter})
+
+const cloudinary = require('cloudinary');  
+cloudinary.config({ 
+  cloud_name: 'pandapandawsh', 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+// ------------------------------------------------------------
 
 // INDEX - get all foods from db datasbase
 router.get("/foods", (req, res) => {
@@ -25,33 +48,32 @@ router.get("/foods", (req, res) => {
 	}	
 });
 
-	//CREATE - add new foods to DB
-router.post("/foods", middleware.isLoggedIn, (req, res) => {
-	// get data from form and add to foods array	
-	var name = req.body.name;
-	var price = req.body.price; 
-	var image = req.body.image;
-	var description = req.body.description;
-	var author = {
-		id: req.user._id,
-		username: req.user.username //req.user reflects current loggd in user
-	}
-	var newFood = {name: name, image: image, description: description, author:author}; //the object to be pushed.
-	//create a new food and save to databases
-	Food.create(newFood, (err, newlyCreated) => {
-		if(err){
-			console.log(err);
-		} else{
-			res.redirect("/foods"); 
-		}
-	});
+//CREATE - add new foods to DB
+router.post("/foods", middleware.isLoggedIn, upload.single('image'), (req, res) => {
+	cloudinary.uploader.upload(req.file.path, function(result) {
+  // add cloudinary url for the image to the food object under image property
+  req.body.food.image = result.secure_url;
+  // add author to campground
+  req.body.food.author = {
+    id: req.user._id,
+    username: req.user.username
+  }
+  Food.create(req.body.food, function(err, food) {
+    if (err) {
+      req.flash('error', err.message);
+      return res.redirect('back');
+    }
+    res.redirect('/foods/' + food.id);
+  });
+});
+	
 });
 
-	//NEW - show form to create new
+//NEW - show form to create new
 router.get("/foods/new", middleware.isLoggedIn, (req, res)=> {
 	res.render("foods/new.ejs");	
 });	 
-	 //SHOW - shows more infor about one food post
+//SHOW - shows more infor about one food post
 router.get("/foods/:id", (req, res) => {
 	Food.findById(req.params.id).populate("comments").exec((err, foundFood) => {
 		if(err){
