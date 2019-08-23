@@ -20,14 +20,6 @@ var commentRoutes = require("./routes/comments"),
 
 mongoose.connect("mongodb://localhost/yelp_food_final",{useNewUrlParser:true});
 //mongoose.connect(process.env.DATABASEURL,{useNewUrlParser:true});
-// mongoose.connect('mongodb+srv://pandawsh:Wshjy31928!@cluster0-v6n3j.mongodb.net/test',{
-// 				 useNewUrlParser: true,
-// 				 useCreateIndex: true
-// 				 }).then(() => {
-// 	console.log('Connected to DB!');
-// }).catch(err => {
-// 	console.log('ERROR:', err.message);
-// });
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs");

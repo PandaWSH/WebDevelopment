@@ -1,43 +1,90 @@
 <% include ../partials/header %>
 <!-- navbar section is in the header.ejs file-->
+<script tyle = "text/javascript">
+function toggle_visibility() {
+	var e = document.getElementById("ShowFoodSection");
+	if(e.style.display === "none") {
+		e.style.display = "block";
+	} else {
+		e.style.display = "none";
+	}
+};
+</script>
 
-<div class="container"> <!-- the most external one -->
-	<header class="jumbotron">
-		<div class = "container">		
-			<h1>This is the food album page!</h1>
-				<p>Feel free to check the food I cooked.</p>		
-				<p>
-					<a class = "btn btn-primary btn-lg" href = "/foods/new">Add new food!</a>
-				</p>
-				<p>
-					<form action = "/foods" method = "GET" class = "form-inline">
-						<div class = "form-group">
-							<input type = "text" name="search" placeholder = "Food search ..." class = "form-control">
-							<input type = "submit" value = "Search" class = "btn btn-default"> 
-						</div>	
-					</form>
-				</p>
-		</div>		
-	</header>
-
-	<div class = "row text-center" style = "display:flex; flex-wrap:wrap;"> <!-- grid auto adjust -->
-		<!-- loading pictures from the food array -->
-		<% foods.forEach(function(food){ %>
-			<div class = "col-md-3 col-sm-6">
-				<div class = "thumbnail">
-					<img src= "<%= food.image %>" > 
-					<div class = "caption"> 
-						<h4><%= food.name %></h4> <!-- text within image container -->
-					</div>
-					<p>
-						<a href = "/foods/<%= food._id %>" class = "btn btn-primary">More Info</a>
-					</p>
-				</div>					
-			</div>
-		<% }); %>	
+<div class = "container-fluid maincontainer" style = "background-color:rgba(255,255,255,0.7);padding:0"> <!-- most external one -->
+<!-- ================================= TOP ================================== -->
+	<div class = "container-fluid" style = "height:180px;">
+			<h1 style = "text-align:center; padding-top:4%">
+				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566508879/index/LaVieDePanda_lq3yem.png" style = "height:37%">	
+			</h1>
 	</div>
-</div> <!-- the most external one -->
-
-	
-
+<!-- ================================= MIDDLE ================================== -->
+	<div>	
+		<div class = "container-fluid">
+		<div class = "row">
+			<!----------- MIDDLE 1 ----------->
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style = "padding-left:0;padding-right:0;">	
+				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566489822/Food/food_homecooking_czkwnm.jpg" style = "width:100%;" onclick = "toggle_visibility()">
+			</div>
+			<!----------- MIDDLE 2 ----------->
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style = "padding-left:0;padding-right:0;">
+				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566489867/Photo/photography_nlq54v.jpg" style = "width:100%;">
+			</div>
+			<!----------- MIDDLE 3 ----------->
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sectionbackground" style = "padding-left:0;padding-right:0;">
+				<!----------------------background ------------------->
+				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566512939/index/sectionBackground_gu7et8.png" style = "width:100%;">
+					
+					<div id = "overdiv">
+						<!-- ------------------Profile pic ------------------>
+						<!-- <div style = "text-align:center;"> -->
+							<img class = "me" src="https://i.imgur.com/8ovgy3V.png">
+						<!-- </div>	 -->
+						<!-- --------------Follow me------------- -->
+						<div style = "text-align:center;padding-top:0px;">	
+							<% if (currentUser && currentUser.username=="irene.wsh1995@gmail.com")  { %> <!-- only allow me myself to upload pics -->	
+								<p>
+									<a class = "btn btn-primary btn-lg" href = "/foods/new">Add new food!</a>
+								</p>
+							<% } else { %>
+								<div class = "followme sfont" >
+									<a target="_blank" class = "sfont followme" href="https://www.instagram.com/ms.panda.w"><img src="https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png" border=0> @Ms.Panda.W</a>	
+								</div>
+							<p></p>
+								<div class = "followme sfont">
+									<a target="_blank" class = "sfont followme" href="https://www.youtube.com/channel/UCWHb-krP9g2UMk_jVhq9IUw"><img src="https://c866088.ssl.cf3.rackcdn.com/assets/youtube30x30.png" border=0> @Ms.Panda.W</a>
+								</div>
+							<% } %>
+						</div>
+					</div>
+			</div>
+		</div>
+		</div>	
+	</div>
+<!-- ================================= BOTTOM ================================== -->
+	<div id = "ShowFoodSection" style = "display:none;">
+		<!-- --------------Spacing------------- -->
+		<div class = "container-fluid" style = "min-height:230px;">
+			<p> text </p>
+		</div>
+		<!-- --------------Load Post------------- -->
+		<div class = "row text-center" style = "display:flex; flex-wrap:wrap;"> <!-- grid auto adjust -->	
+			<!-- loading pictures from the food array -->
+			<% foods.forEach(function(food){ %>
+				<div class = "col-md-3 col-sm-4">
+					<div class = "thumbnail">
+						<img src= "<%= food.image %>" > 
+						<div class = "caption"> 
+							<h4><%= food.name %></h4> <!-- text within image container -->
+						</div>
+						<p>
+							<a href = "/foods/<%= food._id %>" class = "btn btn-primary">More Info</a>
+						</p>
+					</div>					
+				</div>
+			<% }); %>	
+		</div>	
+	</div>
+</div> <!-- most external one -->
 <% include ../partials/footer %>
+

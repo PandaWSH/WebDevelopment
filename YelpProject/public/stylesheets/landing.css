@@ -6,7 +6,16 @@ body {
   z-index: 1;
   position: relative;
   text-align: center;
-  padding-top: 40vh;
+  padding-top: 34vh;
+}
+
+.sfont {
+	font-family:"Mistral";
+}
+
+.btn {
+	background-color:orange;
+	border: rgba(0,0,0,0)
 }
 
 #landing-header h1 {
@@ -40,23 +49,19 @@ body {
 }
 
 .slideshow li:nth-child(1) { 
-  background-image: url(https://i.imgur.com/6NEx4rT.jpg) 
+  background-image: url(https://res.cloudinary.com/pandapandawsh/image/upload/v1566453718/Photo/B05061BB-EC58-4F7E-841B-746EE6B01A17_wf97nr.jpg) 
 }
 .slideshow li:nth-child(2) { 
-  background-image: url(https://i.imgur.com/W0QyUlA.jpg);
+  background-image: url(https://res.cloudinary.com/pandapandawsh/image/upload/v1566446487/Photo/IMG_5360_hc99sw.jpg);
   animation-delay: 10s; 
 }
 .slideshow li:nth-child(3) { 
-  background-image: url(https://i.imgur.com/RyFdLif.jpg);
+  background-image: url(https://res.cloudinary.com/pandapandawsh/image/upload/v1566316343/vpycbwwucxy6w4upxz63.jpg);
   animation-delay: 20s; 
 }
 .slideshow li:nth-child(4) { 
   background-image: url(https:/i.imgur.com/CyjRsmV.jpg);
   animation-delay: 30s; 
-}
-.slideshow li:nth-child(5) { 
-  background-image: url(https://i.imgur.com/NtmrRE9.jpg);
-  animation-delay: 40s; 
 }
 
 @keyframes imageAnimation { 

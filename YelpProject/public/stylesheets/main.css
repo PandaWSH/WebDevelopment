@@ -1,9 +1,65 @@
-/* background */
+/* ------------------ background ------------------- */
 body {
-	background:url("https://i.imgur.com/Bg2NSGx.jpg") center center;
-	background-size: auto;
+	/* background:url("https://i.imgur.com/Bg2NSGx.jpg") center center; */
+	background-color:FFDFBA;
+	background-size: cover;
+	font-family: Arial, Helvetica, sans-serif;
+}
+/* --------------------- most external container ------------------*/ 
+.container-fluid.maincontainer {
+	margin-left:9%;
+	margin-right:9%;
+	padding:0;
 }
 
+/* ------------------- special font ------------------- */
+.sfont {
+	font-family:"Lucida Bright";
+}
+
+/* ------------------- navbar ------------------------*/
+.navbar {
+	/* background-color:rgba(255,255,255,0.8) !important; */
+	border-radius:0 !important;
+	border-color:transparent;
+	background-color: FFDFBA;
+	margin-left:9%;
+	margin-right:9%;
+}
+
+.navbar-brand.icon {
+	font-size: 1.1em ;
+	font-weight:600;
+	/* color:rgba(128,128,128,0.8) !important; */
+	color:white !important;
+}
+
+a.sfont {	
+	font-size:1.1em;
+	font-weight:normal;
+	/* color: rgba(128,128,128,0.8) !important; */
+	color:white !important;
+}
+
+a.sfontlog {
+	font-weight:normal;
+	font-size:1.1em;
+	/* color: rgba(128,128,128,0.8) !important; */
+	color:white !important;
+}
+
+a.sfontlog:hover {
+	color: rgba(128,128,128,0.8) !important;
+}
+
+/* Middle & Content */
+.content {
+	font-family:font-family: "Lucida Bright"
+	color: rgba(128,128,128,0.9) !important;
+
+}
+
+/*--------------------------------------------img */
 .thumbnail img {
 	width : 100%;
 	z-index: 1;
@@ -23,6 +79,35 @@ body {
 	z-index: 1;
 }
 
-.jumbotron {
-	background-color:rgba(255,255,255,0.4) !important; 
+/* -------------------- profile pic ---------------------- */
+#overdiv {
+	position:absolute;
+	top: 10%;
+   	text-align:center;
 }
+img.me {
+	max-width:55%;
+	height:auto;
+	/* float:center; */
+	padding-top:10%;
+	padding-bottom:20px;
+}
+
+/* -------------------- follow me ---------------------- */
+div.followme {
+	padding: 6px; 
+	/* border-radius: 10px;  */
+	font-size:0.8em;
+	background-color:rgba(255,140,0,0.3)
+}
+
+a.followme:hover {
+	color: rgba(128,128,128,0.8) !important;
+}
+
+/* -------------------------------v2----------------------------------- */
+/* Container for flexboxes */
+* {
+  box-sizing: border-box;
+}
+/* -------------------------------v3----------------------------------- */

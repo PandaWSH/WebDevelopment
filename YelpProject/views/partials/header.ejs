@@ -1,32 +1,41 @@
 <html>
 	<head>
-		<title>YelpCam</title>
+		<title>Ms.Panda.W</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+		<link href="https://fonts.googleapis.com/css?family=Anaheim|Arapey|Caveat|Coming+Soon|Cormorant|Federo|Kaushan+Script|Marvel|Merienda|Oleo+Script|Pompiere&display=swap" rel="stylesheet"> <!-- special font -->
 		<link rel="stylesheet"  href = "/stylesheets/main.css"> <!-- link to the stylesheet -->
+	
+		<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	
 	<body>
-		<!-- navbar -->
-	<div class = "container">
-	<nav class="navbar navbar-default">
+	<!------------------ navbar ------------------->
+	<!-- <div class = "container-fluid maincontainer"> -->
+	<nav class="navbar navbar-default" style = "margin-bottom:0;height: 40px !important;">
 		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/">FOOOOD!</a>
+			<div class="navbar-header" >	
+				<span class = "navbar-brand icon glyphicon glyphicon-cutlery" aria-hidden="true"> </span>
+				<a class="navbar-brand sfont" href="/"> La Vie de Panda.W</a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<% if(!currentUser) { %>
-					<li><a href="/login">Login</a></li>
-					<li><a href="/register">Sign up</a></li> 
+					<li><a class = "sfont sfontlog" href="/login">Login</a></li>
+					<li><a class = "sfont sfontlog" href="/register">Sign up</a></li> 
 					<% } else { %>
-					<li><a href="#">Signed In As <%= currentUser.username %></a></li>
-					<li><a href="/logout">Logout</a></li> 
+					<li><a class = "sfont sfontlog" href="#">Signed In As <%= currentUser.username %></a></li>
+					<li><a class = "sfont sfontlog" href="/logout">Logout</a></li> 
 					<% } %>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	</div>
+	<!-- </div> -->
 	
 	<div class = "container">
 		<% if(error && error.length > 0) {%> 

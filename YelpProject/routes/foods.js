@@ -28,12 +28,12 @@ cloudinary.config({
 
 // INDEX - get all foods from db datasbase
 router.get("/foods", (req, res) => {
-	if(req.query.search){
-		const regex = new RegExp(escapeRegex(req.query,search),'gi');
+	if(req.query.search) {
+		const regex = new RegExp(escapeRegex(req.query.search),'gi');
 		Food.find({name: regex}, (err, allFoods) => { //only search regex in names
 			if(err){
 				console.log(err);
-			} else{
+			} else {
 				res.render("foods/index",{foods: allFoods, currentUser: req.user}); //send to the foods.ejs
 			}
 		}); 
@@ -50,20 +50,26 @@ router.get("/foods", (req, res) => {
 
 //CREATE - add new foods to DB
 router.post("/foods", middleware.isLoggedIn, upload.single('image'), (req, res) => {
-	cloudinary.uploader.upload(req.file.path, function(result) {
-  // add cloudinary url for the image to the food object under image property
-  req.body.food.image = result.secure_url;
-  // add author to campground
-  req.body.food.author = {
-    id: req.user._id,
-    username: req.user.username
-  }
-  Food.create(req.body.food, function(err, food) {
-    if (err) {
-      req.flash('error', err.message);
-      return res.redirect('back');
-    }
-    res.redirect('/foods/' + food.id);
+	cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
+		if(err) {
+			req.flash('error',err.message);
+			return res.redirect('back');
+		}
+		// add cloudinary url for the image to the food object under image property
+		req.body.food.image = result.secure_url;
+		// add image's public url for the image to the food object under image property
+		req.body.food.imageId = result.public_id;
+		// add author to campground
+		req.body.food.author = {
+		id: req.user._id,
+		username: req.user.username
+		}
+		Food.create(req.body.food, function(err, food) {
+		if (err) {
+		  req.flash('error', err.message);
+		  return res.redirect('back');
+		}
+		res.redirect('/foods/' + food.id);
   });
 });
 	
@@ -98,12 +104,28 @@ router.get("/foods/:id/edit", middleware.checkFoodOwnership, (req, res)=> {
 });
 
 //UPDATE FOOD ROUTE
-router.put("/foods/:id", middleware.checkFoodOwnership, (req, res) => {
+router.put("/foods/:id", upload.single('image'),middleware.checkFoodOwnership, (req, res) => {
 	//find and update the correct food
-	Food.findByIdAndUpdate(req.params.id, req.body.food, (err, updatedFood)=> {
+	Food.findById(req.params.id, async (err, food)=> {
 		if(err) {
+			req.flash("error",err.message);
 			res.redirect("/foods");
 		} else {
+			if(req.file) {
+				try {
+					await cloudinary.v2.uploader.destroy(food.imageId);
+					var result = await cloudinary.v2.uploader.upload(req.file.path);	
+					food.imageId = result.public_id;
+					food.image = result.secure_url;
+				} catch(err) {
+					req.flash("error",err.message);
+					return res.redirect("/foods");
+				}
+			}
+			food.name = req.body.food.name; //no need to chekc with if condition, becuase it would always be there
+			food.description = req.body.food.description;
+			food.save();
+			req.flash("success", "Successfully Updated!");
 			res.redirect("/foods/" + req.params.id);  
 		}
 	});
@@ -112,11 +134,20 @@ router.put("/foods/:id", middleware.checkFoodOwnership, (req, res) => {
 
 // DESTROY ROUTE
 router.delete("/foods/:id", middleware.checkFoodOwnership, (req, res)=> {
-	Food.findByIdAndRemove(req.params.id, (err)=> {
+	Food.findById(req.params.id, async (err, food)=> {
 		if(err){ 
+			req.flash("error",err.message);
 			res.redirect("/foods");
-		} else {
+		} try {
+			await cloudinary.v2.uploader.destroy(food.imageId); //waiting for the image to be destroyed
+			food.remove();
+			req.flash("sucess",'This cuisine has been deleted'); 
+			return res.redirect("/foods");
+		} catch(err) {
+			if(err){ 
+			req.flash("error",err.message);
 			res.redirect("/foods");
+			}
 		}
 	});
 });
