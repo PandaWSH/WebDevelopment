@@ -17,6 +17,9 @@ var imageFilter = function (req, file, cb) {
     cb(null, true);
 };
 var upload = multer({ storage: storage, fileFilter: imageFilter})
+var toShow = false;
+
+
 
 const cloudinary = require('cloudinary');  
 cloudinary.config({ 
@@ -69,7 +72,7 @@ router.post("/foods", middleware.isLoggedIn, upload.single('image'), (req, res) 
 		  req.flash('error', err.message);
 		  return res.redirect('back');
 		}
-		res.redirect('/foods/' + food.id);
+		res.redirect('/foods');
   });
 });
 	

@@ -1,0 +1,13 @@
+//local hose version "mongodb://localhost/yelp_food_final",{useNewUrlParser:true}
+// online database
+// mongoose.connect('mongodb+srv://pandawsh:Wshjy31928!@cluster0-v6n3j.mongodb.net/test',{
+// 				 useNewUrlParser: true,
+// 				 useCreateIndex: true
+// 				 }).then(() => {
+// 	console.log('Connected to DB!');
+// }).catch(err => {
+// 	console.log('ERROR:', err.message);
+// });
+
+command:
+export DATABASEURL=mongodb+srv:...... 

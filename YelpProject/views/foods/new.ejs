@@ -1,27 +1,42 @@
 <% include ../partials/header %>
-<div class = "container">
-	<div class = "row">	
-	<h1 style = "text-align:center">Create a New Food Album.</h1>
+<div class = "container-fluid maincontainer"  style = "background-color:rgba(255,255,255,0.7);padding-bottom:6%">
+	<div class = "row" style = "padding-top:6%;">	
+	<h1 style = "text-align:center; color: rgba(128,128,128,0.9) !important;" class = "sfont">Create a Post</h1>
 		<div style = "width:30%; margin:30px auto;">
 			<form action = "/foods" method = "POST" enctype = "multipart/form-data">
 				<div class = "form-group">
 					<input class="form-control" type="text" name = "food[name]"  placeholder = "name">
 				</div>
-				<div class = "form-group">
-					<input class="form-control" type="type" name = "price"  placeholder = "price" min="0.01" step="0.01">
+				<div class = "form-group sfont" style = "color: rgba(128,128,128,0.9) !important;">
+					<div class = "radio">
+						<label>
+							<input type = "radio" name = "food[kind]" value = "food"> Food
+						</label>
+						<div class = "form-group">
+							<input class="form-control" type="text" name = "food[ingredient]" placeholder = "ingredient">
+						</div>
+					</div>
+					<div class = "radio">
+						<label>
+							<input type = "radio" name = "food[kind]" value = "photo"> Photo
+						</label>
+						<div class = "form-group">
+							<input class="form-control" type="text" name = "food[location]" placeholder = "location">
+						</div>
+					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group sfont" style = "color: rgba(128,128,128,0.9) !important;">
                     <label for="image">Image</label>
                     <input type="file" id="image" name="image" accept="image/*" required>
                 </div>
 				<div class = "form-group">
-					<input class="form-control" type="text" name = "description" placeholder = "description">
+					<input class="form-control" type="text" name = "food[description]" placeholder = "description">
 				</div>
 				<div class = "form-group">
-					<button class= "btn btn-lg btn-primary btn-block">Submit!</button>	<!-- btn-block has the button use same width, primay makes blue  -->
+					<button class= "btn btn-lg btn-default btn-block sfont" style = "color: rgba(128,128,128,0.9) !important;">Submit!</button>	<!-- btn-block has the button use same width, primay makes blue  -->
 				</div>
 			</form>
-			<a href="/foods" >Go back</a>
+			<a href="/foods" class = "sfont" style = "color: rgba(128,128,128,0.9) !important;">Go back</a>
 		</div>	
 	</div>
 </div>

@@ -10,6 +10,7 @@ var express = require("express"),
 	Comment = require("./models/comment"),
 	flash = require("connect-flash");
 	//seedDB = require("./seeds"); 
+
 require('dotenv').config();
 
 var commentRoutes = require("./routes/comments"),

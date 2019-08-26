@@ -1,15 +1,25 @@
 <% include ./partials/header %>
 
-<div class = "container">
-	
+<div class = "container-fluid maincontainer sfont" style = "background-color:rgba(255,255,255,0.7);padding-bottom:14em">
+	<h1 class = "loginSection" style = "text-align:center;">Log in</h1>	
+		<form class="form-horizontal loginSection" action = "/login" method = "POST" style = "padding:2% 30%;color:rgba(128,128,128,0.9)">
+		  <div class="form-group" style = "padding-left:2em;">
+			<label class = "col-md-2" style = "margin-top:0.6em;margin-right:0.5em;">Username   </label>
+				<div class = "col-md-9">
+				<input type="email" name = "username" class="form-control"> 
+				</div>	
+		  </div>
+		  <div class="form-group" style = "padding-left:2em;padding-bottom:0.2em;">
+			<label class = "col-md-2" style = "margin-top:0.6em;margin-right:0.5em;">Password   </label>
+			  	<div class = "col-md-9">
+				<input type="password" class="form-control" name = "password">	
+			  	</div>	
+		  </div>
+		<div class = "col-md-12">
+		  <button type="submit" class="btn btn-default sfont" style = "width: 26em;color:rgba(128,128,128,0.9);font-weight:bold">   Login!   </button>
+		</div>
+		</form>
 
-<h1>Log in</h1>
-
-<form action = "/login" method = "POST">
-	<input type = "text" name = "username" placeholder = "username">
-	<input type = "password" name = "password" placeholder = "password">
-	<input type = "submit" value = "Login!">
-</form>
 	
 </div>
 <% include ./partials/footer %>

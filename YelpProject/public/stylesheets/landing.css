@@ -10,13 +10,15 @@ body {
 }
 
 .sfont {
-	font-family:"Mistral";
+	font-family:'Seaweed Script', cursive;
 }
 
 .btn {
-	background-color:orange;
-	border: rgba(0,0,0,0)
+	background-color:rgba(255,255,255,0.4);
+	border: rgba(255,255,255,0.4);
+	height: 70px !important;
 }
+
 
 #landing-header h1 {
   color: #fff;
@@ -49,18 +51,18 @@ body {
 }
 
 .slideshow li:nth-child(1) { 
-  background-image: url(https://res.cloudinary.com/pandapandawsh/image/upload/v1566453718/Photo/B05061BB-EC58-4F7E-841B-746EE6B01A17_wf97nr.jpg) 
+  background-image: url(https://res.cloudinary.com/pandapandawsh/image/upload/v1566453718/Photo/B05061BB-EC58-4F7E-841B-746EE6B01A17_wf97nr.jpg) ;
 }
-.slideshow li:nth-child(2) { 
-  background-image: url(https://res.cloudinary.com/pandapandawsh/image/upload/v1566446487/Photo/IMG_5360_hc99sw.jpg);
+.slideshow li:nth-child(2) {
+  background-image: url(https://res.cloudinary.com/pandapandawsh/image/upload/v1566572412/Food/2F0CB832-6F93-488C-850F-D4C7CA2F5937_d002pf.jpg);
   animation-delay: 10s; 
 }
 .slideshow li:nth-child(3) { 
-  background-image: url(https://res.cloudinary.com/pandapandawsh/image/upload/v1566316343/vpycbwwucxy6w4upxz63.jpg);
+  background-image: url(https://res.cloudinary.com/pandapandawsh/image/upload/v1566514928/Photo/_19_00321_uqacph.jpg);
   animation-delay: 20s; 
 }
 .slideshow li:nth-child(4) { 
-  background-image: url(https:/i.imgur.com/CyjRsmV.jpg);
+  background-image: url(https://res.cloudinary.com/pandapandawsh/image/upload/v1566572420/Food/419ED5C4-DA05-4838-85AE-4CBB27D3B80C_ysaq76.jpg);
   animation-delay: 30s; 
 }
 
@@ -85,3 +87,4 @@ body {
 .no-cssanimations .slideshow li {
 	opacity: 1;
 }
+

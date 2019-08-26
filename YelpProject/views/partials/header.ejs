@@ -7,22 +7,30 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
 		<link href="https://fonts.googleapis.com/css?family=Anaheim|Arapey|Caveat|Coming+Soon|Cormorant|Federo|Kaushan+Script|Marvel|Merienda|Oleo+Script|Pompiere&display=swap" rel="stylesheet"> <!-- special font -->
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link rel="stylesheet"  href = "/stylesheets/main.css"> <!-- link to the stylesheet -->
 	
-		<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	
 	<body>
 	<!------------------ navbar ------------------->
 	<!-- <div class = "container-fluid maincontainer"> -->
-	<nav class="navbar navbar-default" style = "margin-bottom:0;height: 40px !important;">
+	<nav class="navbar navbar-default" style = "margin-bottom:0;min-height:0.5em !important;">
 		<div class="container-fluid">
 			<div class="navbar-header" >	
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				 </button>
 				<span class = "navbar-brand icon glyphicon glyphicon-cutlery" aria-hidden="true"> </span>
-				<a class="navbar-brand sfont" href="/"> La Vie de Panda.W</a>
+				<a class="navbar-brand sfont" href="/foods"> La Vie de Panda.W</a>
 			</div>
-			<div class="collapse navbar-collapse">
+			<div class="collapse navbar-collapse" id = "bs-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<% if(!currentUser) { %>
 					<li><a class = "sfont sfontlog" href="/login">Login</a></li>

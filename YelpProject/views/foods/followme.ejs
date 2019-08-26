@@ -1,0 +1,17 @@
+<% if (currentUser && currentUser.username=="irene.wsh1995@gmail.com")  { %> <!-- only allow me myself to upload pics -->	
+	<p>
+		<a class = "btn btn-lg sfont addnew" href = "/foods/new" style = "background-color:rgba(255,140,0,0.3) !important">Add new post</a>
+	</p>
+<% } else { %>
+	<div class = "followme" >
+		<a class = "sfont followme" href="https://www.instagram.com/ms.panda.w">
+			<img src="https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png"> @Ms.Panda.W
+		</a>	
+	</div>
+	<p> </p>
+	<div class = "followme">
+		<a class = "sfont followme" href="https://www.youtube.com/channel/UCWHb-krP9g2UMk_jVhq9IUw">
+			<img src="https://c866088.ssl.cf3.rackcdn.com/assets/youtube30x30.png"> @Ms.Panda.W
+		</a>
+	</div>
+<% } %>

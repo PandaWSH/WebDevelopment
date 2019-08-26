@@ -1,0 +1,42 @@
+	<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-default btn-lg sfont" data-toggle="modal" data-target="#myModal<%=food._id%>" style = "color:rgba(128,128,128,0.9)">More Info</button>
+<!-- Modal -->
+<div id="myModal<%=food._id%>" class="modal fade modalImg sfont" style = "margin: 2vh 15%; color:rgba(128,128,128,0.9)">
+	<!-- <div class = "modal-dialog"> -->
+
+		<!-- Modal content-->
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title"><%= food.name %></h4>
+		  </div>
+		  <div class="modal-body">
+			<div class = "row">
+				<div class = "col-md-9">
+					<img src= "<%= food.image %>" >
+				</div>
+				<div class = "col-md-3">
+					<p><%= food.description %></p>
+					<p><%= food.location %></p>
+					<p><%= food.ingredient %></p>
+					<div>
+					<% if (currentUser && food.author.id.equals(currentUser._id))  { %> <!-- there -->
+						<a class = "btn btn-success sfont" href = "/foods/<%= food._id %>/edit"> Edit </a>  <!-- edit -->
+						<form id = "delete-form" action="/foods/<%= food._id %>?_method=DELETE" method = "POST" >
+							<button class = "btn btn-danger">
+								Delete
+							</button>
+						</form>
+					<% } %>
+				</div>
+				</div>
+					
+			</div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+		</div>
+
+</div>
+

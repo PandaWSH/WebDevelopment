@@ -1,21 +1,33 @@
 <% include ../partials/header %>
 <!-- navbar section is in the header.ejs file-->
-<script tyle = "text/javascript">
-function toggle_visibility() {
-	var e = document.getElementById("ShowFoodSection");
-	if(e.style.display === "none") {
-		e.style.display = "block";
+<script style = "text/javascript">
+function toggle_food() {
+	var ef = document.getElementById("ShowFoodSection");
+	var ep = document.getElementById("ShowPhotoSection");
+	if(ef.style.display === "none") {
+		ef.style.display = "block";
+		ep.style.display = "none";
 	} else {
-		e.style.display = "none";
+		ef.style.display = "none";
 	}
 };
+function toggle_photo() {
+	var ep = document.getElementById("ShowPhotoSection");
+	var ef = document.getElementById("ShowFoodSection");
+	if(ep.style.display === "none") {
+		ep.style.display = "block";
+		ef.style.display = "none";
+	} else {
+		ep.style.display = "none";
+	}
+};	
 </script>
 
 <div class = "container-fluid maincontainer" style = "background-color:rgba(255,255,255,0.7);padding:0"> <!-- most external one -->
 <!-- ================================= TOP ================================== -->
-	<div class = "container-fluid" style = "height:180px;">
-			<h1 style = "text-align:center; padding-top:4%">
-				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566508879/index/LaVieDePanda_lq3yem.png" style = "height:37%">	
+	<div class = "container-fluid" style = "height:28%;">
+			<h1 style = "text-align:center; padding-top:5%;">
+				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566508879/index/LaVieDePanda_lq3yem.png" style = "width:40%">	
 			</h1>
 	</div>
 <!-- ================================= MIDDLE ================================== -->
@@ -23,68 +35,104 @@ function toggle_visibility() {
 		<div class = "container-fluid">
 		<div class = "row">
 			<!----------- MIDDLE 1 ----------->
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style = "padding-left:0;padding-right:0;">	
-				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566489822/Food/food_homecooking_czkwnm.jpg" style = "width:100%;" onclick = "toggle_visibility()">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style = "padding-left:0;padding-right:0;">	
+				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566489822/Food/food_homecooking_czkwnm.jpg" style = "width:100%;" onclick = "toggle_food()">
 			</div>
 			<!----------- MIDDLE 2 ----------->
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style = "padding-left:0;padding-right:0;">
-				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566489867/Photo/photography_nlq54v.jpg" style = "width:100%;">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style = "padding-left:0;padding-right:0;">
+				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566489867/Photo/photography_nlq54v.jpg" style = "width:100%;"onclick = "toggle_photo()">
 			</div>
 			<!----------- MIDDLE 3 ----------->
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sectionbackground" style = "padding-left:0;padding-right:0;">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 sectionbackground" style = "padding-left:0;padding-right:0;">
 				<!----------------------background ------------------->
 				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566512939/index/sectionBackground_gu7et8.png" style = "width:100%;">
 					
-					<div id = "overdiv">
-						<!-- ------------------Profile pic ------------------>
-						<!-- <div style = "text-align:center;"> -->
-							<img class = "me" src="https://i.imgur.com/8ovgy3V.png">
-						<!-- </div>	 -->
-						<!-- --------------Follow me------------- -->
-						<div style = "text-align:center;padding-top:0px;">	
-							<% if (currentUser && currentUser.username=="irene.wsh1995@gmail.com")  { %> <!-- only allow me myself to upload pics -->	
-								<p>
-									<a class = "btn btn-primary btn-lg" href = "/foods/new">Add new food!</a>
-								</p>
-							<% } else { %>
-								<div class = "followme sfont" >
-									<a target="_blank" class = "sfont followme" href="https://www.instagram.com/ms.panda.w"><img src="https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png" border=0> @Ms.Panda.W</a>	
-								</div>
-							<p></p>
-								<div class = "followme sfont">
-									<a target="_blank" class = "sfont followme" href="https://www.youtube.com/channel/UCWHb-krP9g2UMk_jVhq9IUw"><img src="https://c866088.ssl.cf3.rackcdn.com/assets/youtube30x30.png" border=0> @Ms.Panda.W</a>
-								</div>
-							<% } %>
-						</div>
+				<div id = "overdiv">
+					<!-- ------------------Profile pic ------------------>
+					<!-- <div style = "text-align:center;"> -->
+						<img class = "me" src="https://i.imgur.com/8ovgy3V.png">
+					<!-- </div>	 -->
+					<!-- --------------Follow me------------- -->
+					<div style = "text-align:center;padding-top:0px;">	
+						<% include followme %>
 					</div>
+				</div>
 			</div>
 		</div>
 		</div>	
 	</div>
 <!-- ================================= BOTTOM ================================== -->
+	<!---------------------------- FOOD -------------------------------->
 	<div id = "ShowFoodSection" style = "display:none;">
 		<!-- --------------Spacing------------- -->
-		<div class = "container-fluid" style = "min-height:230px;">
-			<p> text </p>
+		<div class = "container-fluid" style = "height:23rem;">
+			<div class = "row sfont" style = "color:rgba(128,128,128,0.9); border-bottom: 1px solid rgba(128,128,128,0.9);margin:0 10%">
+				<div class = "col-md-10" style = "padding-top:10rem;">
+					<h1> FOOD </h1>
+					<p>content</p>
+				</div>	
+			</div>
 		</div>
 		<!-- --------------Load Post------------- -->
-		<div class = "row text-center" style = "display:flex; flex-wrap:wrap;"> <!-- grid auto adjust -->	
-			<!-- loading pictures from the food array -->
-			<% foods.forEach(function(food){ %>
-				<div class = "col-md-3 col-sm-4">
-					<div class = "thumbnail">
-						<img src= "<%= food.image %>" > 
-						<div class = "caption"> 
-							<h4><%= food.name %></h4> <!-- text within image container -->
+		<div class = "container-fluid">
+			<div class = "row" style = "margin-left:1.5%;margin-right:1.5%;"> <!-- grid auto adjust -->
+				<!-- loading pictures from the food array -->
+				<% foods.forEach(function(food){ %>
+					<% if(food.kind && food.kind=="food") { %>
+					<div class = "col-lg-4 col-md-4 col-sm-6">
+						<div class = "cropper"  style = "margin:auto; margin-bottom: 1%">
+								<img src= "<%= food.image %>" class = "img-crop"> 
+								<p class = "overbutton">
+									<% include modal %>
+								</p>					
 						</div>
-						<p>
-							<a href = "/foods/<%= food._id %>" class = "btn btn-primary">More Info</a>
-						</p>
-					</div>					
-				</div>
-			<% }); %>	
-		</div>	
+					</div>
+					<% } %> 
+				<% }); %>	
+			</div>
+		</div>
+	</div>
+	
+	<!--------------------------- PHOTO ----------------------------->
+	<div id = "ShowPhotoSection" style = "display:none;">
+		<!-- --------------Spacing------------- -->
+		<div class = "container-fluid" style = "height:23rem;">
+			<div class = "row sfont" style = "color:rgba(128,128,128,0.9); border-bottom: 1px solid rgba(128,128,128,0.9);margin:0 10%">
+				<div class = "col-md-10" style = "padding-top:10rem;">
+					<h1> PHOTO </h1>
+				<p>content</p>
+				</div>	
+			</div>	
+		</div>
+		<!-- --------------Load Post------------- -->
+		<div class = "container-fluid">
+			<div class = "row" style = "	margin-left:1.5%;margin-right:1.5%;"> <!-- grid auto adjust -->
+				<!-- loading pictures from the food array -->
+				<% foods.forEach(function(food){ %>
+					<% if(food.kind && food.kind=="photo") { %>
+					<div class = "col-lg-4 col-md-4 col-sm-6">
+						<div class = "cropper"  style = "margin:auto; margin-bottom: 3%">
+							<div>
+								<img src= "<%= food.image %>" class = "img-crop"> 
+								<p class = "overbutton">
+									<% include modal %>
+								</p>
+							</div>					
+						</div>
+					</div>
+					<% } %> 
+				<% }); %>	
+			</div>
+		</div>
+		<!--------------- pull up button --------------->
+		<div class = "container-fluid"> 
+			<p onclick = "toggle_photo()" style = "text-align:center">
+				<p> ^ (change to icon)</p>
+				<p>button placeholder:js finished, wait to be converted to button, wait for styling</li>
+			</p>
+		</div>
 	</div>
 </div> <!-- most external one -->
+			
 <% include ../partials/footer %>
 
