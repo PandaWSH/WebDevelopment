@@ -17,8 +17,6 @@ var commentRoutes = require("./routes/comments"),
 	foodRoutes = require("./routes/foods"),
 	indexRoutes = require("./routes/index");
 
-	
-
 mongoose.connect("mongodb://localhost/yelp_food_final",{useNewUrlParser:true});
 //mongoose.connect(process.env.DATABASEURL,{useNewUrlParser:true});
 
@@ -65,7 +63,6 @@ app.use(commentRoutes);
 // ==========
 // AUTH ROUTE
 // ==========
-
 
 //*********** server setup **************
 app.listen(9000, () => {

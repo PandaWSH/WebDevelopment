@@ -1,6 +1,6 @@
 /* ------------------ background ------------------- */
 body {
-	background-color:FFDFBA;
+	background-color:#FFDFBA;
 	background-size: cover;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -136,10 +136,11 @@ a.followme:hover {
 border-radius:50%;
 }
 
+
 .overbutton {
 	position:absolute;
-	top: 42%;
-	left: 30%;
+	top: 45%;
+	left: 32%;
 	opacity: 0;
 }
 
@@ -183,6 +184,6 @@ footer h4 {
 }
 
 .modalAdjust {
-	margin: 2% 20%;
+	margin: 2% 15%;
 }
 

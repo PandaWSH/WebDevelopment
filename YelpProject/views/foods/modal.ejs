@@ -1,12 +1,25 @@
-	<!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-default btn-lg sfont" data-toggle="modal" data-target="#myModal<%=food._id%>" style = "color:rgba(128,128,128,0.9)">More Info</button>
-<!-- Modal -->
-<div id="myModal<%=food._id%>" class="modal fade modalImg sfont" style = "margin: 2vh 15%; color:rgba(128,128,128,0.9)">
-	<!-- <div class = "modal-dialog"> -->
+<script>
+$(function(){
+    $('#food._id').on('submit', function(e){
+      e.preventDefault();
+      $.post('/foods/:id/comments', 
+         $('#food._id').serialize(), 
+         function(data, status, xhr){
+           alert("yes");
+         });
+    });
+});
+</script>	
 
+
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-default btn-md sfont" data-toggle="modal" data-target="#<%=food._id%>">More Info</button>
+<!-- Modal -->
+<div id="<%=food._id%>" class="modal fade modalImg sfont" style = "margin: 2vh 15%; color:rgba(128,128,128,0.9)">
+	<!-- <div class = "modal-dialog"> -->
 		<!-- Modal content-->
 		<div class="modal-content">
-		  <div class="modal-header">
+		  <div class="modal-header" style = "background-color:#FFDFBA;">
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
 			<h4 class="modal-title"><%= food.name %></h4>
 		  </div>
@@ -15,25 +28,29 @@
 				<div class = "col-md-9">
 					<img src= "<%= food.image %>" >
 				</div>
-				<div class = "col-md-3">
+				<div class = "col-md-3"  style = "padding-left:0">
 					<p><%= food.description %></p>
-					<p><%= food.location %></p>
-					<p><%= food.ingredient %></p>
-					<div>
-					<% if (currentUser && food.author.id.equals(currentUser._id))  { %> <!-- there -->
-						<a class = "btn btn-success sfont" href = "/foods/<%= food._id %>/edit"> Edit </a>  <!-- edit -->
-						<form id = "delete-form" action="/foods/<%= food._id %>?_method=DELETE" method = "POST" >
-							<button class = "btn btn-danger">
-								Delete
-							</button>
-						</form>
+					<% if (food.ingredient) { %>
+						<p><span class="glyphicon glyphicon-list-alt" aria-hidden="true"> <%= food.ingredient %></p>
+					<% } %>	
+					<% if (food.location) { %>		
+						<p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"> <%= food.location %></p>
 					<% } %>
+					<div style = "border: 0.1em solid rgba(128,128,128,0.9); border-radius:1em">
+						<div style = "padding:4%">
+							<a href="/foods/<%= food._id %>/comments/new" style = "padding-bottom:5%; color:rgba(128,128,128,0.9);"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> COMMENTS</a>
+							<% food.comments.forEach(function(comment,index){ %>
+								<!----- load comment section file ---->
+								<!-- include modal_comment -->
+								<% include modal_collapse %>
+							<% }) %>
+						</div>
+						
+					</div>
 				</div>
-				</div>
-					
 			</div>
 		  </div>
-		  <div class="modal-footer">
+		  <div class="modal-footer" style = "background-color:#FFDFBA;">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		  </div>
 		</div>

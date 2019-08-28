@@ -1,0 +1,85 @@
+<% include ../partials/header %>
+<!-- navbar section is in the header.ejs file-->
+
+ <!-- the most external container -->
+<!-- <div class="container-fluid"> done -->
+	<header class="jumbotron">
+		<div class = "container">		
+			<h2 class = "sfont">Welcome to Panda's Food Album!</h2> <!-- title -->
+				<!-- --------------Introduction------------- -->
+			<div class = "row" style = "padding: 10px; border:4px dashed rgba(255,140,0,0.6); border-radius: 15px; ">
+				<div class="col-lg-10 col-md-8 col-sm-9 col-xs-9 " style ="padding-top:5px;">
+					<p class = "content" align = "justify" style = "font-size: 1.4em;text-indent:30px;">
+						My name is Panda, and I've being recording my daily cook for five years. Most of the cuisine are breakfast, and for one person only. The initial
+						reason why I started to photo my breakfast was to set a motivation for me to wake up early, because thinking about how tasty food I will have, I 
+						could jump out of my bed more easily when the alarm clock rings in the morning. 
+					</p>
+					<p class = "content" align = "justify" style = "font-size: 1.4em;text-indent:30px">
+						Five years later, taking picture of my homecooked breakfast has being my daily routine. It helped me to eat more healthy food, explore new receip, 
+						as well as do better time management in the morning (cooking, eating, taking photo, and doing makeup...).
+					</p>
+					<p class = "content" align = "justify" style = "font-size: 1.4em;text-indent:30px">
+						Thank you for visiting my website! Look forward to your shares!
+					</p>
+					<!-- --------------Search------------- -->
+					<div class = "row" style = "padding-bottom:20px;">
+						<form action = "/foods" method = "GET" >
+							<div class = "col-xs-12 col-md-10">
+								<input type = "text" name="search" placeholder = "To explore...? Noodles, seafood, Chinese food, vege, coffee, etc." class = "form-control content">
+							</div>
+							<div class="col-xs-6 col-md-1">
+								<input type = "submit" value = "Search" class = "btn btn-default content"> 
+							</div>	
+						</form>
+					</div>
+				</div>
+				<!-- ------------------Profile pic & follow me ----------------- -->
+				<div class="col-lg-2 col-md-4 col-sm-3 col-xs-3 ">
+					<!-- ------------------Profile pic ----------------- -->
+					<div style = "text-align:center;">
+						<img class = "me" src="https://i.imgur.com/8ovgy3V.png">
+					</div>	
+					
+					<!-- --------------Follow me------------- -->
+					<div style = "text-align:center;padding-top:10px;">	
+						<% if (currentUser && currentUser.username=="irene.wsh1995@gmail.com")  { %> <!-- only allow me myself to upload pics -->	
+							<p>
+								<a class = "btn btn-primary btn-lg" href = "/foods/new">Add new food!</a>
+							</p>
+						<% } else { %>
+							<div class = "container followme sfont" >
+								<a target="_blank" class = "sfont followme" href="https://www.instagram.com/ms.panda.w"><img src="https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png" border=0> @Ms.Panda.W</a>	
+							</div>
+						<p></p>
+							<div class = "container followme sfont">
+								<a target="_blank" class = "sfont followme" href="https://www.youtube.com/channel/UCWHb-krP9g2UMk_jVhq9IUw"><img src="https://c866088.ssl.cf3.rackcdn.com/assets/youtube30x30.png" border=0> @Ms.Panda.W</a>
+							</div>
+						<% } %>
+					</div>	
+				</div>
+			</div>
+				
+		</div>		
+	</header>
+	<!-- --------------Load Post------------- -->
+	<div class = "row text-center" style = "display:flex; flex-wrap:wrap;"> <!-- grid auto adjust -->
+		<!-- loading pictures from the food array -->
+		<% foods.forEach(function(food){ %>
+			<div class = "col-md-4 col-sm-6">
+				<div class = "thumbnail">
+					<img src= "<%= food.image %>" > 
+					<div class = "caption"> 
+						<h4><%= food.name %></h4> <!-- text within image container -->
+					</div>
+					<p>
+						<a href = "/foods/<%= food._id %>" class = "btn btn-primary">More Info</a>
+					</p>
+				</div>					
+			</div>
+		<% }); %>	
+	</div>
+</div> <!-- the most external one -->
+
+	
+
+<% include ../partials/footer %>

@@ -14,7 +14,7 @@ router.get("/foods/:id/comments/new", middleware.isLoggedIn, (req, res)=> { //is
 		});
 	});
 
-router.post("/foods/:id/comments", middleware.isLoggedIn, (req, res) => { //isLoggedIn makes sure comments will be seen only when users logged in
+router.post("/foods/:id/comments", middleware.isLoggedIn,(req, res) => { //isLoggedIn makes sure comments will be seen only when users logged in
 	//lookup food using ID
 	Food.findById(req.params.id, (err, foodfound) => {
 		if(err) {
@@ -33,7 +33,7 @@ router.post("/foods/:id/comments", middleware.isLoggedIn, (req, res) => { //isLo
 					foodfound.save();
 					console.log(comment);
 					req.flash("success","COMMENT HAS BEEN MADE");
-					res.redirect('/foods/' + foodfound._id);
+					res.redirect('/foods/');
 				}	   
 			});
 		}
@@ -60,7 +60,7 @@ router.put("/foods/:id/comments/:comment_id", middleware.checkCommentOwnership, 
 		if(err) {
 			res.redirect("back");	
 		} else {
-			res.redirect("/foods/" + req.params.id);
+			res.redirect("/foods");
 		}
 	});
 });
@@ -71,7 +71,7 @@ router.delete("/foods/:id/comments/:comment_id", middleware.checkCommentOwnershi
 		if(err) {
 			res.redirect("back");	
 		} else {
-			res.redirect("/foods/" + req.params.id);
+			res.redirect("/foods");
 		}
 	});
 });

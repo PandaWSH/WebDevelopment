@@ -1,0 +1,14 @@
+<div  style = "padding-top:3%">
+	<strong><%= comment.author.username %></strong>
+	<p><%= comment.text %></p>
+	<div>
+		<% if (currentUser && food.author.id.equals(currentUser._id))  { %> <!-- there -->
+			<a class = "btn btn-success btn-sm" href = "/foods/<%= food._id %>/edit"> Edit </a>  <!-- edit -->
+			<form id = "delete-form" action="/foods/<%= food._id %>?_method=DELETE" method = "POST" >
+				<button class = "btn btn-danger btn-sm">
+					Delete
+				</button>
+			</form>
+		<% } %>
+	</div>
+</div>

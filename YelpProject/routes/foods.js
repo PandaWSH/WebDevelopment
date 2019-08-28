@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router(); //then change all "app" into "router"
 var Food = require("../models/food");
+var Comment = require("../models/comment");
 var middleware = require("../middleware"); //since the folder only has one file, it's ok this way
 // ---------------------- image upload ------------------------
 var multer = require('multer');
@@ -30,25 +31,14 @@ cloudinary.config({
 // ------------------------------------------------------------
 
 // INDEX - get all foods from db datasbase
-router.get("/foods", (req, res) => {
-	if(req.query.search) {
-		const regex = new RegExp(escapeRegex(req.query.search),'gi');
-		Food.find({name: regex}, (err, allFoods) => { //only search regex in names
-			if(err){
-				console.log(err);
-			} else {
-				res.render("foods/index",{foods: allFoods, currentUser: req.user}); //send to the foods.ejs
-			}
-		}); 
-	} else {	
+router.get("/foods", (req, res) => {	
 		Food.find({}, (err, allFoods) => { 
 			if(err){
 				console.log(err);
 			} else{
 				res.render("foods/index",{foods: allFoods, currentUser: req.user}); //send to the foods.ejs
 			}
-		});
-	}	
+		}).populate("comments");
 });
 
 //CREATE - add new foods to DB
@@ -72,7 +62,7 @@ router.post("/foods", middleware.isLoggedIn, upload.single('image'), (req, res) 
 		  req.flash('error', err.message);
 		  return res.redirect('back');
 		}
-		res.redirect('/foods');
+		res.redirect('/foods/');
   });
 });
 	
@@ -129,7 +119,7 @@ router.put("/foods/:id", upload.single('image'),middleware.checkFoodOwnership, (
 			food.description = req.body.food.description;
 			food.save();
 			req.flash("success", "Successfully Updated!");
-			res.redirect("/foods/" + req.params.id);  
+			res.redirect("/foods/");  
 		}
 	});
 	//redirect somewhere
