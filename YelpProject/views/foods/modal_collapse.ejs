@@ -18,12 +18,12 @@
       <div class="collapse" id="collapseEdit<%= comment._id %>">
         <div class="well" style="border-left: 5px solid #ffbb33; margin-top: 15px;">
           <h4>Edit your comment <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></h4>
-          <form id="edit-comment-form<%= comment._id %>" action="/foods/<%= food._id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+          <form id="<%= comment._id %>" action="/foods/<%= food._id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
             <div class="form-group">
               <input class="form-control" type="text" disabled value="<%= currentUser.username %>">
             </div>
             <div class="form-group">
-              <textarea class="form-control" name="comment[text]" placeholder="Your comment text..." form="edit-comment-form<%= comment._id %>" rows="5" cols="70"><%= comment.text %></textarea>
+              <textarea class="form-control" name="comment[text]" placeholder="Your comment text..." form="<%= comment._id %>" rows="5" cols="70"><%= comment.text %></textarea>
             </div>
             <div class="form-group">
               <button class="btn btn-warning btn-sm">Edit comment <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>
@@ -32,15 +32,15 @@
         </div>
       </div>
 		
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous">
-		$('#modalcollapseEdit<%= comment._id %>').on('hidden.bs.modal', function() {
-			$(this).removeData('bs.modal');
-		});
-
-				<% } %>
+		<script style = "text/javascript">
+		$('comment._id').on('submit', function(e) {
+			// $(this).removeData('bs.modal');
+		  $('food._id').modal('show');
+		   e.preventDefault();
+		});	
 		</script>
+				<% } %>
+		
     </div>
 </div>
 

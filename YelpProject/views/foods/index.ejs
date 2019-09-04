@@ -1,31 +1,27 @@
 <% include ../partials/header %>
 <!-- navbar section is in the header.ejs file-->
 <script style = "text/javascript">
-function toggle_food() {
-	var ef = document.getElementById("ShowFoodSection");
-	var ep = document.getElementById("ShowPhotoSection");
-	if(ef.style.display === "none") {
-		ef.style.display = "block";
-		ep.style.display = "none";
-	} else {
-		ef.style.display = "none";
-	}
-};
-function toggle_photo() {
-	var ep = document.getElementById("ShowPhotoSection");
-	var ef = document.getElementById("ShowFoodSection");
-	if(ep.style.display === "none") {
-		ep.style.display = "block";
-		ef.style.display = "none";
-	} else {
-		ep.style.display = "none";
-	}
+function closeDiv() {
+	$('.sectionbox').each(function(index) {
+		$(this).hide(500);
+	});	
 };	
+		
+function toggleDiv(divID) {
+     $('.sectionbox').each(function(index) {
+          if ($(this).attr("id") == divID) {
+               $(this).show(200);
+          }
+          else {
+               $(this).hide(600);
+          }
+     });
+}
 </script>
 
 <div class = "container-fluid maincontainer" style = "background-color:rgba(255,255,255,0.7);padding:0"> <!-- most external one -->
 <!-- ================================= TOP ================================== -->
-	<div class = "container-fluid" style = "height:28%;">
+	<div class = "container-fluid" id = "topSection">
 			<h1 style = "text-align:center; padding-top:5%;">
 				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566508879/index/LaVieDePanda_lq3yem.png" style = "width:40%">	
 			</h1>
@@ -36,11 +32,11 @@ function toggle_photo() {
 		<div class = "row">
 			<!----------- MIDDLE 1 ----------->
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style = "padding-left:0;padding-right:0;">	
-				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566489822/Food/food_homecooking_czkwnm.jpg" style = "width:100%;" onclick = "toggle_food()">
+				<a href = "javascript:toggleDiv('ShowFoodSection');"><img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566489822/Food/food_homecooking_czkwnm.jpg" style = "width:100%;"></a>
 			</div>
 			<!----------- MIDDLE 2 ----------->
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style = "padding-left:0;padding-right:0;">
-				<img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566489867/Photo/photography_nlq54v.jpg" style = "width:100%;"onclick = "toggle_photo()">
+				<a href = "javascript:toggleDiv('ShowPhotoSection');"><img src = "https://res.cloudinary.com/pandapandawsh/image/upload/v1566489867/Photo/photography_nlq54v.jpg" style = "width:100%;"></a>
 			</div>
 			<!----------- MIDDLE 3 ----------->
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 sectionbackground" style = "padding-left:0;padding-right:0;">
@@ -63,13 +59,13 @@ function toggle_photo() {
 	</div>
 <!-- ================================= BOTTOM ================================== -->
 	<!---------------------------- FOOD -------------------------------->
-	<div id = "ShowFoodSection" style = "display:none;">
+	<div id = "ShowFoodSection" style = "display:none;" class = "sectionbox">
 		<!-- --------------Spacing------------- -->
-		<div class = "container-fluid" style = "height:23rem;">
+		<div class = "container-fluid" id = "sectionPic">
 			<div class = "row sfont" style = "color:rgba(128,128,128,0.9); border-bottom: 1px solid rgba(128,128,128,0.9);margin:0 10%">
-				<div class = "col-md-10" style = "padding-top:10rem;">
+				<div class = "col-md-11" id = "sectionTitle">
 					<h1> FOOD </h1>
-					<p>content</p>
+					<p style = "font-style: italic;font-size: 1.3em;"> My breakfast, my lunchbox, and my cuisines. </p>
 				</div>	
 			</div>
 		</div>
@@ -79,34 +75,43 @@ function toggle_photo() {
 				<!-- loading pictures from the food array -->
 				<% foods.forEach(function(food){ %>
 					<% if(food.kind && food.kind=="food") { %>
-					<div class = "col-lg-4 col-md-4 col-sm-6">
+					<div class = "col-lg-4 col-md-4 col-sm-6 col-xs-12" id = "loadPost">
 						<div class = "cropper"  style = "margin:auto; margin-bottom: 1%">
 								<img src= "<%= food.image %>" class = "img-crop"> 
 								<p class = "overbutton">
-									<% include modal %>
+									<% include toShowPage %>
+									<!-- include modal -->
 								</p>					
 						</div>
 					</div>
 					<% } %> 
 				<% }); %>	
 			</div>
+			<!------------------ close load --------------->
+			<div class = "container-fluid sfont" style = "text-align:center;padding-bottom:2%">
+				<a href = "javascript:closeDiv();">
+					<h4>
+						- Close -
+					</h4>
+				</a>	
+			</div>
 		</div>
 	</div>
 	
 	<!--------------------------- PHOTO ----------------------------->
-	<div id = "ShowPhotoSection" style = "display:none;">
+	<div id = "ShowPhotoSection" style = "display:none;" class = " sectionbox">
 		<!-- --------------Spacing------------- -->
 		<div class = "container-fluid" style = "height:23rem;">
 			<div class = "row sfont" style = "color:rgba(128,128,128,0.9); border-bottom: 1px solid rgba(128,128,128,0.9);margin:0 10%">
-				<div class = "col-md-10" style = "padding-top:10rem;">
+				<div class = "col-md-10" style = "padding-top:9rem;">
 					<h1> PHOTO </h1>
-				<p>content</p>
+					<p style = "font-style: italic;font-size: 1.3em;">About daily life, about special moment, about the world in my eyes.</p>	
 				</div>	
 			</div>	
 		</div>
 		<!-- --------------Load Post------------- -->
 		<div class = "container-fluid">
-			<div class = "row" style = "	margin-left:1.5%;margin-right:1.5%;"> <!-- grid auto adjust -->
+			<div class = "row" style = "margin-left:1.5%;margin-right:1.5%;"> <!-- grid auto adjust -->
 				<!-- loading pictures from the food array -->
 				<% foods.forEach(function(food){ %>
 					<% if(food.kind && food.kind=="photo") { %>
@@ -115,13 +120,22 @@ function toggle_photo() {
 							<div>
 								<img src= "<%= food.image %>" class = "img-crop"> 
 								<p class = "overbutton">
-									<% include modal %>
+									<% include toShowPage %>
+									<!-- include modal -->
 								</p>
 							</div>					
 						</div>
 					</div>
 					<% } %> 
 				<% }); %>	
+			</div>
+			<!------------------ close load --------------->
+			<div class = "container-fluid sfont" style = "text-align:center; padding-bottom:2%">
+				<a href = "javascript:closeDiv();">
+					<h4>
+						- Close -
+					</h4>
+				</a>	
 			</div>
 		</div>
 	</div>

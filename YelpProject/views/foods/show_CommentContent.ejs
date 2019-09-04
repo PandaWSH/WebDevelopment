@@ -1,0 +1,38 @@
+<hr style = "padding:0; margin:4%">
+<!--Check if there are comments, if there are none say no comments.-->
+	<% if (food.comments.length === 0) { %>
+		<em style="color: grey;">No comments yet.</em>
+	<% } %>
+
+<!--Display comments by looping through them-->
+	<% food.comments.forEach(function(comment) { %>
+	<div class="row">
+    <div class="col-md-12">
+	<!-- Show User ID -->	
+		<strong>
+			<% if (currentUser && currentUser._id.equals(comment.author.id)) { %>
+				<!--If the current user owns the comment, change the color of the user icon-->
+				<span style="color: orange;" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+			<% } else { %>
+				<!--Else just display it black-->
+				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+			<% } %>
+				<!--Print out the author username-->
+				<%= comment.author.username %>
+		</strong>
+
+	<!--Printing the comment-->
+		<p><%= comment.text %></p>
+	
+	<!--If the visitor is logged in and the owner of the comment, show the edit and delete buttons-->
+        <% if (currentUser && currentUser._id.equals(comment.author.id)) { %>
+		<!--Delete comment button-->
+			<form id="delete-form" action="/foods/<%= food._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST" style="display: inline;">
+				<button class="btn btn-xs btn-danger">Delete</button>
+			</form>
+		
+		<% } %>
+	</div> <!-- "row" -->
+	</div> <!-- "col-md-12" -->
+    <% }) %>
+<hr style = "padding:0; margin:4%">

@@ -32,8 +32,8 @@ router.post("/foods/:id/comments", middleware.isLoggedIn,(req, res) => { //isLog
 					foodfound.comments.push(comment);
 					foodfound.save();
 					console.log(comment);
-					req.flash("success","COMMENT HAS BEEN MADE");
-					res.redirect('/foods/');
+					req.flash("success","Thank you for sharing!");
+					res.redirect('/foods/' + foodfound._id);
 				}	   
 			});
 		}
@@ -60,7 +60,8 @@ router.put("/foods/:id/comments/:comment_id", middleware.checkCommentOwnership, 
 		if(err) {
 			res.redirect("back");	
 		} else {
-			res.redirect("/foods");
+			req.flash("success","Thank you for sharing!");
+		    res.redirect("/foods/" + req.params.id);
 		}
 	});
 });
@@ -71,7 +72,7 @@ router.delete("/foods/:id/comments/:comment_id", middleware.checkCommentOwnershi
 		if(err) {
 			res.redirect("back");	
 		} else {
-			res.redirect("/foods");
+			res.redirect("/foods/" + req.params.id);
 		}
 	});
 });

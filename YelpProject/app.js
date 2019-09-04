@@ -50,7 +50,7 @@ app.use(indexRoutes);
 app.use(foodRoutes);
 app.use(commentRoutes);
 
-// ******************************* ROUTES *********************************
+// ******************************* ROUTES ********************************
 
 // ==============
 // INDEX ROUTE - show all foods

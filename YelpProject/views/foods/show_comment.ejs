@@ -1,0 +1,37 @@
+<div class = "well col-md-4">
+			<div>
+				<p>
+					<%=food.description %>
+				</p>
+				<div>
+					<% if (currentUser && food.author.id.equals(currentUser._id))  { %> <!-- there -->
+						<a class = "btn btn-success" href = "/foods/<%= food._id %>/edit"> Edit </a>  <!-- edit -->
+						<form id = "delete-form" action="/foods/<%= food._id %>?_method=DELETE" method = "POST" >
+							<button class = "btn btn-danger">
+								Delete
+							</button>
+						</form>
+					<% } %>
+				</div>
+			</div>	
+			<div class = "text-right"><!-- button -->
+				<a class = "btn btn-success" href="/foods/<%= food._id %>/comments/new">Comment</a>
+			</div>
+			<% food.comments.forEach(function(comment,index){ %>
+				<div class = "row">	
+					<div class = "col-md-12">
+						<strong><%= comment.author.username %></strong> <!-- bold the author -->
+						<p><%= comment.text %></p>
+
+						<% if (currentUser && comment.author.id.equals(currentUser._id))  { %>
+							<a class = "btn btn-xs btn-warning"
+							   href = "/foods/<%=food._id%>/comments/<%=comment._id%>/edit">Edit</a>
+							<form id = "delete-form" action= "/foods/<%=food._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+								<input type = "submit" class = "btn btn-xs btn-danger" value="Delete">
+							</form>
+						<% } %>
+						
+					</div>
+				</div>
+			<% }) %>
+		</div>	

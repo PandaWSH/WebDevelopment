@@ -6,7 +6,7 @@
 		  <div class="form-group" style = "padding-left:2em;">
 			<label class = "col-md-2" style = "margin-top:0.6em;margin-right:0.5em;">Username   </label>
 				<div class = "col-md-9">
-				<input type="email" name = "username" class="form-control"> 
+				<input type="text" name = "username" class="form-control"> 
 				</div>	
 		  </div>
 		  <div class="form-group" style = "padding-left:2em;padding-bottom:0.2em;">
@@ -16,7 +16,11 @@
 			  	</div>	
 		  </div>
 		<div class = "col-md-12">
+		  <input type="hidden" name="referer" value= <%= referer %> >
 		  <button type="submit" class="btn btn-default sfont" style = "width: 26em;color:rgba(128,128,128,0.9);font-weight:bold">   Login!   </button>
+			<p style = "padding-top:3%">
+				<a href = "/register" >Don't have an account?</a>
+			</p>
 		</div>
 		</form>
 

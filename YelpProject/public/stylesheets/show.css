@@ -1,0 +1,59 @@
+#showSection {
+	background-color:rgba(255,255,255,0.7);
+	padding:1.5%;
+	height:80vh;
+}
+#showContent {
+  padding-left:0;height:65vh;position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#showContent img {
+	margin:auto auto;
+	object-fit:contain;
+	height:65vh; 
+	padding:0;
+}
+
+#showComment {
+  color: rgba(128,128,128,0.9);height:65vh;position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/************************* For mobile phones portrait version: ********************/
+@media only screen and (max-width: 400px) {
+	#showSection {
+	background-color:rgba(255,255,255,0.7);
+	padding:1.5%;
+	height:auto;
+	}
+	#showContent {
+	  height:20vh;
+	  padding:0;
+	  position: relative;
+	  top: 0;
+	  -webkit-transform: none;
+	  -ms-transform:none;
+	  transform: none;
+	}
+
+	#showContent img {
+		margin:0 auto;
+		object-fit:contain;
+		height:50vh; 
+		padding:0;
+	}
+	
+	#showComment {
+	  height:35vh;position: relative;
+	  top: 100%;
+	  -webkit-transform: none;
+	  -ms-transform: none;
+	  transform: none;
+	}

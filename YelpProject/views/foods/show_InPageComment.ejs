@@ -1,0 +1,77 @@
+<script style = "text/javascript">
+$('#exampleModal').appendTo("body") ; 
+</script>
+
+<!-- Description section -->
+<div class = "sfont">
+	<h3 style = "padding-top:0; margin-top:0"><%=food.name%></h3>
+	<p>
+		<%=food.description %>
+		<!-- ingredients -->
+		<% if(food.ingredient) { %>
+			<p><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Ingredients: <%= food.ingredient %></p>
+		<% } %>
+		<!-- location -->
+		<% if(food.location) { %>
+			<p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Photo taken at <%= food.location %></p>
+		<% } %>
+	</p>
+	<div>
+		<% if (currentUser && food.author.id.equals(currentUser._id))  { %> <!-- there -->
+			<a class = "btn btn-success" href = "/foods/<%= food._id %>/edit"> Edit </a>  <!-- edit -->
+			<form id = "delete-form" action="/foods/<%= food._id %>?_method=DELETE" method = "POST" >
+				<button class = "btn btn-danger">
+					Delete
+				</button>
+			</form>
+		<% } %>
+	</div>
+</div>	
+<!-- Comment section -->
+<div class = "well" style = "padding:12">
+	<!--Title-->
+		<h4 style = "margin:0"><strong>Comments <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true"></span></strong></h4>
+		<% include show_CommentContent %> 
+
+	<!--COMMENT SECTION START-->	
+		<!--Setting up the add new comment button that is used for collapsing-->
+		<div class="text-center">
+			<a class="btn btn-default" role="button" data-toggle="modal" data-target="#exampleModal" style = "color:rgba(128,128,128,0.9)">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new comment</a>
+		</div>	
+
+		<!--Collapse Add a comment form START-->
+		<div class="modal fade" id="exampleModal" role="dialog" data-backdrop="false">
+		<div class="modal-dialog modal-sm" role = "document">
+		<div class = "modal-content">
+			<div class="modal-header" style = "background-color:#FFDFBA;">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title"><%= food.name %></h4>
+		    </div>
+			<div class = "modal-body">
+				<% if(!currentUser) { %>
+			  <!--If the user is not logged in, direct him to the login page-->
+			  <h5>You need to login before you can comment. <a href="/login">Click here</a> to go to the login page.</h5>
+				<% } %>
+				<% if(currentUser) { %>
+			  <!--If the user is logged in, show the new comment form-->
+			  <h4>Write your comment <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+			  <form id="add-comment-form" action="/foods/<%= food._id %>/comments" method="POST">
+				<div class="form-group">
+				  <input class="form-control" type="text" disabled value="<%= currentUser.username %>">
+				</div>
+				<div class="form-group">
+				  <textarea class="form-control" name="comment[text]" placeholder="Write your comment..." form="add-comment-form" rows="5" cols="70"></textarea>
+				</div>
+				<div class="form-group">
+				  <button class="btn btn-success btn-sm">Comment <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>
+				</div>
+			  </form>
+				<% } %>
+			</div>
+				
+		</div>
+		</div>
+	</div>
+		<!--Collapse Add a comment form END-->
+</div>

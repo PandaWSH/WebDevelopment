@@ -17,37 +17,39 @@ router.get("/register", (req, res)=> {
 });
 
 router.post("/register", (req, res) => {
-	var newUser = new User({username: req.body.username});//username
-	User.register(newUser, req.body.password, (err, user) => {
+	var newUser = new User({username: req.body.username, email:req.body.email});//username
+	User.register(newUser, req.body.password,(err, user) => {
 		if(err) {
 			req.flash("error",err.message); //err.message will show the message
-			return res.render("register"); //to get out of the err context
+			res.render("register"); //to get out of the err context	
 		}
 		passport.authenticate("local")(req, res, function(){
-			req.flash("success", "Welcome to Food Album" + user.username);
+			req.flash("success",  + "Hi! " + req.body.username +", thank you and welcome to Panda's Album!");
 			res.redirect("/foods");
 		});	
 	});//"register" provided by passport local mongoose
 	
 });
 
-// show register form
+// show login form
 router.get("/login", (req, res) => {
-	res.render("login");
+	res.render("login",{referer:req.headers.referer});
 });
 
 // login route
-router.post("/login",passport.authenticate("local", {
-	successRedirect: "/foods",
-	failureRedirect:"/login"
-	}), (req, res) => {
-	res.send("LOGIN LOGIC");
+router.post("/login", passport.authenticate("local", {failureRedirect: "/login",failureFlash: true}), (req, res) => {
+    if (req.headers.referer && (req.body.referer !== undefined && req.body.referer.slice(-6) !== "/login")) {
+		req.flash("success","WELCOME BACK");
+        res.redirect(req.body.referer);
+    } else {
+        res.redirect("/foods");
+    }
 });
 
 router.get("/logout", (req, res) => {
 	req.logout();
-	req.flash("success","YOU HAVE LOGGED OUT");
-	res.redirect('/foods');
+	req.flash("success","SEE YOU LATER!");
+	res.redirect("back");
 });
 
 // only allow the user to comment when logged in

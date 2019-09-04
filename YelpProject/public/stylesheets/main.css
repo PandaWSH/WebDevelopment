@@ -159,6 +159,16 @@ a.btn.sfont {
 	color: rgba(128,128,128,0.8) !important;
 }
 
+#sectionPic {
+	height:23rem;
+}
+
+#sectionTitle {
+	padding-top:9rem;
+}
+
+
+
 /* ----------------------- login Page --------------------*/
 h1.loginSection{
 	margin-top:3em;
@@ -173,6 +183,14 @@ form.loginSection {
 /* ------------------------- footer ------------------- */
 footer h4 {
 	font-size: 1em;
+	text-align: center; 
+	color:white !important; 
+	font-weight:600;
+}
+
+footer {
+	padding-top:1%;
+	padding-bottom:2%;
 }
 
 /* ------------------------- popup window ------------------------ */
@@ -187,3 +205,120 @@ footer h4 {
 	margin: 2% 15%;
 }
 
+#topSection {
+	height:28%;
+}
+
+
+/************************* For mobile phones portrait version: ********************/
+@media only screen and (max-width: 400px) {
+  /* Main Container */
+  .container-fluid.maincontainer {
+	margin-left:5%;
+	margin-right:5%;
+	padding:0;
+	}
+	
+  /* topSection */
+  #topSection {
+	height:10%;
+	}
+	
+  /* footer */
+  footer h4 {
+	font-size: 0.6em;
+	text-align: center; 
+	color:white !important; 
+	font-weight:400;
+	}
+	
+	footer {
+	padding-top:0.5%;
+	padding-bottom:1%;
+	}
+	
+  /* followme */
+	div.followme {
+	border-radius: 0.5em; 
+	font-size:0.5em;
+	background-color:rgba(255,140,0,0.3);
+	color:white;
+	min-width:30%;
+	min-height:10%;
+	margin: 0 10%;
+	}
+  /* profile pic */
+	img.me {
+	max-width:55%;
+	height:auto;
+	/* float:center; */
+	padding-top:5%;
+	padding-bottom:10%;
+	}
+	
+  /* section */
+	#sectionPic {
+	height:13rem;
+	}
+	#sectionTitle {
+	padding-top:2rem;
+	}
+	#sectionTitle h1 {
+		font-size:2rem
+	}
+	#sectionTitle p {
+		font-size:1em ! important;
+	}
+	.cropper {
+	  position: relative;
+	  width: 30vh;
+	  height: 30vh;
+	  overflow: hidden;
+	  padding:8%;
+	}
+	.cropper img {
+	  height: 100%;
+	  width: 100%;
+	  object-fit: cover;
+	border-radius:50%;
+	}
+
+}
+
+
+/************************* For mobile phones landscape version: ********************/
+@media only screen and (max-width: 768px) and (orientation:landscape){
+  /* Main Container */
+  .container-fluid.maincontainer {
+	margin-left:5%;
+	margin-right:5%;
+	padding:0;
+	}
+  /* load img */
+	.cropper {
+	  position: relative;
+	  width: 80vh;
+	  height: 80vh;
+	  overflow: hidden;
+	  padding:5%;
+	}
+	.cropper img {
+	  height: 100%;
+	  width: 100%;
+	  object-fit: cover;
+	border-radius:50%;
+	}
+	/* section title */
+	#sectionPic {
+	height:15rem;
+	}
+	#sectionTitle {
+	padding-top:3rem;
+	}
+	#sectionTitle h1 {
+		font-size:2.3rem
+	}
+	#sectionTitle p {
+		font-size:1.2em ! important;
+	}
+}
