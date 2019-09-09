@@ -51,7 +51,7 @@ $('#exampleModal').appendTo("body") ;
 			<div class = "modal-body">
 				<% if(!currentUser) { %>
 			  <!--If the user is not logged in, direct him to the login page-->
-			  <h5>You need to login before you can comment. <a href="/login">Click here</a> to go to the login page.</h5>
+			  <h5 id = "commentAlert">You need to login before you can comment. <a href="/login">Click here</a> to go to the login page.</h5>
 				<% } %>
 				<% if(currentUser) { %>
 			  <!--If the user is logged in, show the new comment form-->

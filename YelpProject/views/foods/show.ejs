@@ -1,19 +1,42 @@
 <% include ../partials/header %>
 
 
-<div class = "container-fluid maincontainer" id = "showSection">
+
+
+<div class = "container-fluid maincontainer sfont modal2" id = "showSection">
 		<!-- =================== Content =================== -->
-		<div class = "col-md-8 sfont" id = "showContent">
-				<img class = "img-responsive" src = "<%= food.image %>"> <!-- image -->	
-			
+		<div class = "col-md-8 col-sm-12" id = "showContent">
+			<img class = "img-responsive" src = "<%= food.image %>" id="myImg">
+		</div>
+		<!-- The Modal -->
+		<div id="myModal2" class="modal">
+		  <span class="close">&times;</span>
+		  <img class="modal-content" id="img01">
+		  <div id="caption"></div>
 		</div>
 		<!-- =================== Comment =================== -->
 		<!-- include show_comment -->
-		<div class = "well col-md-4 sfont" id = "showComment"> 
+		<div class = "well col-md-4 col-sm-12" id = "showComment"> 
 			<% include show_InPageComment %>
 		</div>
-		<!-- =================== Go Back =================== -->
-	    <!-- <a href="/foods/" onclick="window.history.back();return false;">Previous Page</a> -->
 </div> <!----------------------- most external one ------------------------->
+
+<script tyle = "text/javascript">
+	var modal = document.getElementById("myModal2");
 	
+	var img = document.getElementById("myImg");
+	var modalImg = document.getElementById("img01");
+	var captionText = document.getElementById("caption");
+	img.onclick = function(){
+	  modal.style.display = "block";
+	  modalImg.src = this.src;
+	}
+	
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() { 
+	  modal.style.display = "none";
+	}
+</script>	
 <% include ../partials/footer %>

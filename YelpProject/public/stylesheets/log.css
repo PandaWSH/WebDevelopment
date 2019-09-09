@@ -1,0 +1,41 @@
+/* ----------------------- login Page --------------------*/
+h1.loginSection{
+	margin-top:3em;
+	color: rgba(128,128,128,1) !important;
+	font-size:3em;
+	text-align:center;
+}
+form.loginSection {
+	text-align:center;
+	padding-top:2em;
+}
+
+.loginSection label {
+	margin-top:0.6em;
+	margin-right:0.5em;
+}
+
+.loginSection button {
+	width: 100%;
+	color:rgba(128,128,128,0.9);
+	font-weight:bold;
+}
+
+form.loginSection {
+	padding:2% 30%;
+	color:rgba(128,128,128,0.9);
+}
+
+/************************* For mobile phones portrait version: ********************/
+@media only screen and (max-width: 768px) {
+	h1.loginSection{
+	margin-top:2.em;
+	color: rgba(128,128,128,1) !important;
+	font-size:1.5em;
+	text-align:center;
+	}
+
+	form.loginSection {
+	padding:2% 20%;
+	}
+}

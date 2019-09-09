@@ -168,18 +168,6 @@ a.btn.sfont {
 }
 
 
-
-/* ----------------------- login Page --------------------*/
-h1.loginSection{
-	margin-top:3em;
-	color: rgba(128,128,128,1) !important;
-	font-size:3em;
-}
-form.loginSection {
-	text-align:center;
-	padding-top:2em;
-}
-
 /* ------------------------- footer ------------------- */
 footer h4 {
 	font-size: 1em;
@@ -194,16 +182,6 @@ footer {
 }
 
 /* ------------------------- popup window ------------------------ */
-.modalImg img {
-	border-radius:0 !important;
-	width:100% !important;
-	height:auto !important;
-	opacity:1 !important;
-}
-
-.modalAdjust {
-	margin: 2% 15%;
-}
 
 #topSection {
 	height:28%;
@@ -247,6 +225,8 @@ footer {
 	min-height:10%;
 	margin: 0 10%;
 	}
+	
+	
   /* profile pic */
 	img.me {
 	max-width:55%;

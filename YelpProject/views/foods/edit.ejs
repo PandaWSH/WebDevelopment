@@ -1,35 +1,32 @@
 <% include ../partials/header %>
 <div class = "container-fluid maincontainer sfont" style = "background-color:rgba(255,255,255,0.7);padding-bottom:4%; color:rgba(128,128,128,0.9)"> 
 	<div class = "row" style = "padding-top:6%;">	
-	<h1 style = "text-align:center">Edit <%= food.name %></h1>
-		<div style = "width:30%; margin:30px auto;">
-			<form action = "/foods/<%= food._id %>?_method=PUT" method = "POST" enctype="multipart/form-data">
+	<h1 class = "loginSection" style = "margin-top:1em !important">Edit <%= food.name %></h1>
+		<form class="form-horizontal loginSection" action = "/foods/<%= food._id %>?_method=PUT" method = "POST" enctype="multipart/form-data">
+			<div class = "form-group">
+				<label class = "col-md-3 col-sm-3" style = " margin:0">Name</label>
+				<input class="form-control" type="text" name = "food[name]"  value = "<%= food.name %>">
+			</div>
+			<% if(food.ingredient) { %> 
 				<div class = "form-group">
-					<label>Name</label>
-					<input class="form-control" type="text" name = "food[name]"  value = "<%= food.name %>">
+					<label class = "col-md-3 col-sm-3" style = " margin:0">Ingredient</label>
+					<input class="form-control" type="text" name = "food[ingredient]"  value = "<%= food.ingredient %>">
 				</div>
-				<% if(food.ingredient) { %> 
-					<div class = "form-group">
-						<label>Ingredient</label>
-						<input class="form-control" type="text" name = "food[ingredient]"  value = "<%= food.ingredient %>">
-					</div>
-				<% } %>
-				<% if(food.location) { %> 
-					<div class = "form-group">
-						<label>Location</label>
-						<input class="form-control" type="text" name = "food[location]"  value = "<%= food.location %>">
-					</div>
-				<% } %>
+			<% } %>
+			<% if(food.location) { %> 
 				<div class = "form-group">
-					<label>Description</label>
-					<textarea class="form-control" type="text" name = "food[description]"  rows = "3"> <%= food.description %> </textarea>
+					<label class = "col-md-3 col-sm-3" style = " margin:0">Location</label>
+					<input class="form-control" type="text" name = "food[location]"  value = "<%= food.location %>">
 				</div>
-				<div class = "form-group">
-					<button class= "btn btn-lg btn-default btn-block" style = "color:rgba(128,128,128,0.9)">Submit!</button>	<!-- btn-block has the button use same width, primay makes blue  -->
-				</div>
-			</form>
-			<a href="/foods" style = "color:rgba(128,128,128,0.9) !important">GO BACK</a>
-		</div>	
+			<% } %>
+			<div class = "form-group">
+				<label class = "col-md-3 col-sm-3" style = " margin:0">Description</label>
+				<textarea class="form-control" type="text" name = "food[description]"  rows = "3"> <%= food.description %> </textarea>
+			</div>
+			<div class = "form-group">
+				<button class= "btn btn-lg btn-default btn-block" style = "color:rgba(128,128,128,0.9)">Submit!</button>	<!-- btn-block has the button use same width, primay makes blue  -->
+			</div>
+		</form>	
 	</div>
 </div>
 <% include ../partials/footer %>

@@ -17,8 +17,8 @@ var commentRoutes = require("./routes/comments"),
 	foodRoutes = require("./routes/foods"),
 	indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/yelp_food_final",{useNewUrlParser:true});
-//mongoose.connect(process.env.DATABASEURL,{useNewUrlParser:true});
+//mongoose.connect("mongodb://localhost/yelp_food_final",{useNewUrlParser:true});
+mongoose.connect(process.env.DATABASEURL,{useNewUrlParser:true});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs");
@@ -65,9 +65,9 @@ app.use(commentRoutes);
 // ==========
 
 //*********** server setup **************
-app.listen(9000, () => {
-	console.log("server test ok!");
-});
+// app.listen(9000, () => {
+// 	console.log("server test ok!");
+// });
 
-//app.listen(process.env.PORT, process.env.IP);
+app.listen(process.env.PORT, process.env.IP);
 // ***************************************

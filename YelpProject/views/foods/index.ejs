@@ -101,9 +101,9 @@ function toggleDiv(divID) {
 	<!--------------------------- PHOTO ----------------------------->
 	<div id = "ShowPhotoSection" style = "display:none;" class = " sectionbox">
 		<!-- --------------Spacing------------- -->
-		<div class = "container-fluid" style = "height:23rem;">
+		<div class = "container-fluid" id = "sectionPic">
 			<div class = "row sfont" style = "color:rgba(128,128,128,0.9); border-bottom: 1px solid rgba(128,128,128,0.9);margin:0 10%">
-				<div class = "col-md-10" style = "padding-top:9rem;">
+				<div class = "col-md-11" id = "sectionTitle">
 					<h1> PHOTO </h1>
 					<p style = "font-style: italic;font-size: 1.3em;">About daily life, about special moment, about the world in my eyes.</p>	
 				</div>	
@@ -115,8 +115,8 @@ function toggleDiv(divID) {
 				<!-- loading pictures from the food array -->
 				<% foods.forEach(function(food){ %>
 					<% if(food.kind && food.kind=="photo") { %>
-					<div class = "col-lg-4 col-md-4 col-sm-6">
-						<div class = "cropper"  style = "margin:auto; margin-bottom: 4em">
+					<div class = "col-lg-4 col-md-4 col-sm-6 col-xs-12" id = "loadPost">
+						<div class = "cropper"  style = "margin:auto; margin-bottom: 1%">
 							<div>
 								<img src= "<%= food.image %>" class = "img-crop"> 
 								<p class = "overbutton">

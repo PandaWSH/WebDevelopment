@@ -1,44 +1,44 @@
 <% include ../partials/header %>
-<div class = "container-fluid maincontainer"  style = "background-color:rgba(255,255,255,0.7);padding-bottom:6%;color: rgba(128,128,128,0.9) !important;">
-	<div class = "row" style = "padding-top:6%;">	
-	<h1 style = "text-align:center;" class = "sfont">Create a New Food Album.</h1>
-		<div style = "width:30%; margin:30px auto;">
-			<form action = "/foods" method = "POST" enctype = "multipart/form-data">
-				<div class = "form-group">
-					<input class="form-control" type="text" name = "food[name]"  placeholder = "name">
-				</div>
-				<div class = "form-group sfont">
-					<div class = "radio">
-						<label>
-							<input type = "radio" name = "food[kind]" value = "food"> Food
-						</label>
-						<div class = "form-group">
-							<input class="form-control" type="text" name = "food[ingredient]" placeholder = "ingredient">
-						</div>
-					</div>
-					<div class = "radio">
-						<label>
-							<input type = "radio" name = "food[kind]" value = "photo"> Photo
-						</label>
-						<div class = "form-group">
-							<input class="form-control" type="text" name = "food[location]" placeholder = "location">
-						</div>
+<div class = "container-fluid maincontainer sfont"  style = "background-color:rgba(255,255,255,0.7);color: rgba(128,128,128,0.9) !important;">
+	<div class = "row" style = "padding:6% 0;">	
+	<h1 class = "loginSection" style = "margin-top:1em !important">Create a New Post</h1>
+		<form class="form-horizontal loginSection" action = "/foods" method = "POST" enctype = "multipart/form-data">
+			<div class = "form-group row">
+				<input class="form-control" type="text" name = "food[name]"  placeholder = "name">
+			</div>
+			<div class = "form-group">
+				<div class = "radio">
+					<label class = "col-md-3 col-sm-3 col-xs-3" style = "margin:0">
+						<input type = "radio" name = "food[kind]" value = "food"> Food
+					</label>
+					<div class = "col-md-9 col-sm-9 col-xs-9">
+						<input class="form-control" type="text" name = "food[ingredient]" placeholder = "ingredient">
 					</div>
 				</div>
-				<div class="form-group sfont">
-                    <label for="image">Image</label>
-                    <input type="file" id="image" name="image" accept="image/*" required>
-                </div>
-				<div class = "form-group">
-					<label>Description</label>
-					<textarea class="form-control" type="text" name = "food[description]"  rows = "3"></textarea>
+				<p></p>
+				<div class = "radio">
+					<label class = "col-md-3 col-sm-3 col-xs-3" style = "margin:0">
+						<input type = "radio" name = "food[kind]" value = "photo"> Photo
+					</label>
+					<div class = "col-md-9 col-sm-9 col-xs-9">
+						<input class="form-control" type="text" name = "food[location]" placeholder = "location">
+					</div>
 				</div>
-				<div class = "form-group">
-					<button class= "btn btn-lg btn-default btn-block sfont">Submit!</button>	<!-- btn-block has the button use same width, primay makes blue  -->
+			</div>
+			<div class="form-group">
+				<label class = "col-md-3 col-sm-3 col-xs-3" style = "margin:0" for="image">Image</label>
+				<div class = "col-md-9 col-sm-9 col-xs-9">
+					<input type="file" id="image" name="image" accept="image/*" required>
 				</div>
-			</form>
-			<a href="/foods" class = "sfont" style = "color: rgba(128,128,128,0.9) !important;">Go back</a>
-		</div>	
+			</div>
+			<div class = "form-group">
+				<label>Description</label>
+				<textarea class="form-control" type="text" name = "food[description]"  rows = "3"></textarea>
+			</div>
+			<div class = "form-group">
+				<button class= "btn btn-lg btn-default btn-block">Submit!</button>	<!-- btn-block has the button use same width, primay makes blue  -->
+			</div>
+		</form>
 	</div>
 </div>
 <% include ../partials/footer %>
