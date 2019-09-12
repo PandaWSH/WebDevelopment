@@ -16,7 +16,7 @@ $(function() {
 		inputLength = textArray.length();
 
 		//conditions
-		if(inputLength>1){
+		if(inputLength>1){ //if there is some text input
 
 		}else{
 			$('error') //show error message because no enough input content
