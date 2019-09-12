@@ -1,0 +1,35 @@
+.big{
+    font-size: 20px;   
+}
+
+/*page 1, add background image*/
+#page1 {
+	background: url(https://res.cloudinary.com/pandapandawsh/image/upload/v1567211262/oqssynnr4cxzsjxcoi2q.jpg);
+	background-position: center center;
+	background-attachment: fixed;
+	background-size:100% 100%;
+	color: #fff; 
+	text-align: center;
+	font-family: 'Amatic SC', cursive;
+}
+
+#error {
+	background-color: rgba(204,229,255,0.6);
+	width: 50%;
+	margin: 20px auto;
+	font-size: 20px;
+}
+
+#result {
+	font-size: 50px;
+	background-color: rgba(204,229,255,0.3);
+	padding: 5% 0;
+}
+
+/* ---------------slider--------------Hide the number input */
+.full-width-slider input {
+	display: none !important;
+}
+.full-width-slider .ui-slider-track {
+    margin-left: 15px;
+}
