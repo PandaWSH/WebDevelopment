@@ -1,6 +1,10 @@
 $(function() {
 	var textArray;
 	var inputLength;
+	var reading = false; //initialize the reading condition
+	var counter;
+	var action;
+	var frequency=1000; 
 
 	$("#new").hide();
 	$("#resume").hide();
@@ -10,19 +14,63 @@ $(function() {
 	$("#error").hide();
 
 	// click on "start" to start reading
-	$('start').click(function(){
+	$('#start').click(function(){
 		//get text and split into array
 		textArray = $("#userInput").val().split(/\s+/); // \s matches space, line, etc
-		inputLength = textArray.length();
+		inputLength = textArray.length;
 
 		//conditions
 		if(inputLength>1){ //if there is some text input
 
+			reading = true; //will read
+
+			//hide relative buttons and show relative buttons
+			$("#start").hide();
+			$("#error").hide();
+			$("#userInput").hide();
+			$("#new").show();
+			$("#pause").show();
+			$("#controls").show();
+
+			//set slider max
+			$("#progessslider").attr("max",inputLength-1);
+
+			//initialize the variable counter at zero
+			counter = 0;
+
+			//show reading box with the first word
+			$('#result').show();
+			$('#result').text(textArray[counter]);
+
+			//start reading from the 1st word
+			action = setInterval(read, frequency);
+			
+			
 		}else{
-			$('error') //show error message because there's no enough input content
+			$('error').show; //show error message because there's no enough input content
 		}
 	});
 
-//
+//************* function section *************
+function read(){
+	if(counter == inputLength-1){ //no content OR finished
+		clearInterval(action);
+		reading = false; //move to none reading mode
+		$("#pause").hide();
+	}else{
+		//counter goes up by one
+		counter++;
+
+		//get word
+		$("#result").text(textArray[counter]);
+
+		//changing progress slider value & refresh as well
+		$("#progressslider").val(counter);
+		$("#progressslider").slider('refresh');
+
+		//change text of percentage
+		$("#percentage").text(Math.floor(counter/(inputLength-1)*100));
+	}
+}
 
 });
