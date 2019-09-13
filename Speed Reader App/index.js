@@ -80,6 +80,18 @@ $("#resume").click(function(){
 	$("#pause").show();
 });
 
+//change the fontsize
+$("#fontsizeslider").on("slidestop",function(event,ui){
+	//refresh the slider
+	$("#fontsizeslider").slider("refresh");
+
+	//get the value of the slider
+	var slidervalue = parseInt($("#fontsizeslider").val());
+
+	$("#result").css("fontSize",slidervalue);
+	$("#fontsize").text(slidervalue);
+});
+
 
 
 //************* function section *************
