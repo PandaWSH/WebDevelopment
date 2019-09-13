@@ -33,7 +33,7 @@ $(function() {
 			$("#controls").show();
 
 			//set slider max
-			$("#progessslider").attr("max",inputLength-1);
+			$("#progressslider").attr("max",inputLength-1);
 
 			//initialize the variable counter at zero
 			counter = 0;
@@ -50,6 +50,37 @@ $(function() {
 			$('error').show; //show error message because there's no enough input content
 		}
 	});
+
+
+// click on new
+$("#new").click(function(){
+	//reload the page
+	location.reload();
+});
+
+// click on pause
+$("#pause").click(function(){
+	//stop reading
+	clearInterval(action);
+	reading = false;
+
+	//hide pause and show resume
+	$("#pause").hide();
+	$("#resume").show();
+});
+
+// click on resume
+$("#resume").click(function(){
+	//stop reading
+	action = setInterval(read, frequency);
+	reading = true;
+
+	//hide pause and show resume
+	$("#resume").hide();
+	$("#pause").show();
+});
+
+
 
 //************* function section *************
 function read(){
