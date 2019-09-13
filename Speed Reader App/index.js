@@ -4,7 +4,7 @@ $(function() {
 	var reading = false; //initialize the reading condition
 	var counter;
 	var action;
-	var frequency=1000; 
+	var frequency=200; 
 
 	$("#new").hide();
 	$("#resume").hide();
@@ -92,6 +92,28 @@ $("#fontsizeslider").on("slidestop",function(event,ui){
 	$("#fontsize").text(slidervalue);
 });
 
+// change the reading speed
+$("#speedslider").on("slidestop",function(event,ui){
+	//refresh the slider
+	$("#speedslider").slider("refresh");
+
+	//get the value of the slider
+	var slidervalue = parseInt($("#speedslider").val());
+
+	$("#speed").text(slidervalue);
+
+	// stop reading
+	clearInterval(action);
+
+	//change frequency
+	frequency = 60000/slidervalue;
+
+	//resume reading if we're in reading mode
+	if(reading){
+		action = setInterval(read,frequency);
+	}
+
+});
 
 
 //************* function section *************
