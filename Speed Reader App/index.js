@@ -115,6 +115,33 @@ $("#speedslider").on("slidestop",function(event,ui){
 
 });
 
+// change the progress speed
+$("#progressslider").on("slidestop",function(event,ui){
+	//refresh the slider
+	$("#progressslider").slider("refresh");
+
+	//get the value of the slider
+	var slidervalue = parseInt($("#progressslider").val());
+
+	// stop reading
+	clearInterval(action);
+
+	//change counter
+	counter = slidervalue;
+
+	//change word
+	$("#result").text(textArray[counter]);
+
+	//chage value of progress
+	$("$percentage").text(Math.floor(counter/(inputLength-1)*100));
+
+	//resume reading if we're in reading mode
+	if(reading){
+		action = setInterval(read,frequency);
+	}
+
+});
+
 
 //************* function section *************
 function read(){
