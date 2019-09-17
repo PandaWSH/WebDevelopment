@@ -6,6 +6,7 @@ $(function() {
 	var action;
 	var frequency=200; 
 
+	// initial state: hide all buttons
 	$("#new").hide();
 	$("#resume").hide();
 	$("#pause").hide();
@@ -99,7 +100,7 @@ $("#speedslider").on("slidestop",function(event,ui){
 
 	//get the value of the slider
 	var slidervalue = parseInt($("#speedslider").val());
-
+	// print the value
 	$("#speed").text(slidervalue);
 
 	// stop reading
